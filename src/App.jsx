@@ -1511,69 +1511,6 @@ const FAQSection = () => {
   )
 }
 
-// =====================================================================
-// SCREEN 9 — Final CTA
-// =====================================================================
-const FinalCTASection = () => (
-  <section className="py-14 md:py-24 bg-gradient-to-bl from-brand-green-dark via-brand-green to-brand-green-dark text-white relative overflow-hidden">
-    <div className="absolute inset-0 bg-pattern opacity-40" />
-    <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2" />
-    <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl translate-y-1/2" />
-
-    <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
-      <div className="inline-flex items-center gap-2 bg-brand-gold/20 border border-brand-gold/50 text-brand-gold-light px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-6">
-        <Flame className="w-4 h-4" />
-        <span>الخطوة الأخيرة</span>
-      </div>
-
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-5 leading-[1.2]">
-        توقف عن الاعتماد على
-        <span className="block text-gradient-gold mt-2">الحلول المؤقتة</span>
-      </h2>
-
-      <p className="text-base md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-        سواء جرّبت Viagra أو Cialis أو Snafi أو Procomil أو Himcolin من قبل —
-        الوقت الآن لخطة <strong className="text-brand-gold-light">مخصصة</strong> لحالتك أنت،
-        مع <strong className="text-brand-gold-light">متابعة يومية</strong> و
-        <strong className="text-brand-gold-light"> ضمان 90 يوم</strong>.
-      </p>
-
-      <a
-        href="#"
-                className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 md:px-12 py-5 md:py-6 rounded-2xl font-black text-base md:text-xl shadow-2xl shadow-[#25D366]/40 transition-all hover:scale-[1.03] border-2 border-white/20 mb-10"
-      >
-        <MessageCircle className="w-6 h-6 md:w-7 md:h-7" />
-        <span>ابدأ الاستشارة الخاصة الآن</span>
-      </a>
-
-      {/* Trust points */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 max-w-3xl mx-auto">
-        {[
-          { icon: Banknote, label: 'دفع عند الاستلام', en: 'Cash on Delivery' },
-          { icon: PackageCheck, label: 'تغليف خاص وسري', en: 'Discreet Packaging' },
-          { icon: MessageCircle, label: 'متابعة يومية شخصية', en: 'Daily Follow-up' },
-          { icon: ShieldCheck, label: 'ضمان 90 يوم', en: '90-Day Guarantee' },
-        ].map((t, i) => {
-          const Icon = t.icon
-          return (
-            <div key={i} className="bg-white/10 backdrop-blur border border-brand-gold/30 rounded-2xl p-4 md:p-5">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-gold rounded-xl flex items-center justify-center mx-auto mb-2.5 text-brand-green-dark">
-                <Icon className="w-5 h-5 md:w-6 md:h-6" />
-              </div>
-              <div className="font-bold text-xs md:text-base">{t.label}</div>
-              <div className="text-[10px] md:text-xs text-brand-gold-light mt-0.5" dir="ltr">{t.en}</div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  </section>
-)
-
-
-// =====================================================================
-// Footer
-// =====================================================================
 const Footer = () => (
   <footer className="bg-brand-green-dark text-white/70 py-8 pb-8 border-t-2 border-brand-gold/30">
     <div className="max-w-5xl mx-auto px-4 md:px-8 text-center">
@@ -1611,7 +1548,6 @@ export default function App() {
       <OurValueSection />
       <BeforeAfterSection />
       <FAQSection />
-      <FinalCTASection />
       <Footer />
     </div>
   )

@@ -51,7 +51,6 @@ import {
   Layers,
 } from 'lucide-react'
 
-const WHATSAPP_URL = 'https://wa.me/XXXXXXXXXXX'
 
 // =====================================================================
 // SVG Product Images
@@ -166,28 +165,6 @@ const WarningX = () => (
 )
 
 // =====================================================================
-// Floating WhatsApp Button
-// =====================================================================
-const FloatingWhatsApp = () => (
-  <a
-    href={WHATSAPP_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fixed bottom-[72px] md:bottom-[76px] left-5 z-50 group"
-    aria-label="WhatsApp"
-  >
-    <div className="bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center whatsapp-pulse transition-transform group-hover:scale-105 shadow-lg">
-      <svg viewBox="0 0 32 32" className="w-7 h-7 md:w-8 md:h-8" fill="currentColor">
-        <path d="M16.003 0C7.174 0 .013 7.16.013 15.99c0 2.82.74 5.57 2.146 7.99L0 32l8.205-2.144a15.95 15.95 0 0 0 7.798 1.994h.006c8.83 0 15.99-7.16 15.99-15.99 0-4.27-1.664-8.286-4.685-11.307A15.873 15.873 0 0 0 16.003 0Zm0 29.32h-.005a13.31 13.31 0 0 1-6.78-1.857l-.486-.288-5.04 1.318 1.347-4.913-.317-.504a13.275 13.275 0 0 1-2.034-7.086c0-7.342 5.974-13.316 13.32-13.316a13.231 13.231 0 0 1 9.418 3.905 13.244 13.244 0 0 1 3.9 9.42c-.005 7.342-5.98 13.32-13.322 13.32Zm7.305-9.973c-.4-.2-2.37-1.17-2.737-1.304-.366-.135-.633-.2-.9.2-.265.4-1.03 1.303-1.265 1.57-.234.267-.467.3-.867.1-.4-.2-1.69-.62-3.22-1.99-1.19-1.06-1.995-2.37-2.228-2.77-.234-.4-.025-.617.175-.816.18-.18.4-.467.6-.7.2-.234.266-.4.4-.667.135-.267.067-.5-.033-.7-.1-.2-.9-2.166-1.232-2.966-.324-.78-.654-.674-.9-.687a16.4 16.4 0 0 0-.766-.013c-.267 0-.7.1-1.067.5-.367.4-1.4 1.367-1.4 3.333 0 1.967 1.432 3.866 1.632 4.133.2.267 2.82 4.305 6.83 6.04.954.412 1.7.657 2.28.84.957.305 1.83.262 2.518.16.768-.115 2.366-.967 2.7-1.9.333-.933.333-1.733.233-1.9-.1-.166-.367-.266-.767-.466Z"/>
-      </svg>
-    </div>
-    <div className="absolute bottom-full mb-2 left-0 bg-brand-gray text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-      تحدث معنا الآن
-    </div>
-  </a>
-)
-
-// =====================================================================
 // Top Trust Bar
 // =====================================================================
 const TopBar = () => (
@@ -246,13 +223,11 @@ const HeroSection = () => (
 
           <div className="flex flex-col sm:flex-row gap-3 mb-7">
             <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               className="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-6 py-4 rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-[#25D366]/30 transition-all hover:scale-[1.02]"
             >
               <MessageCircle className="w-5 h-5" />
-              <span>تحدث معنا بسرية عبر واتساب</span>
+              <span>Start Your Private Assessment Now</span>
             </a>
             <a
               href="#brand-comparison"
@@ -562,7 +537,7 @@ const BrandComparisonSection = () => {
                 {[
                   { icon: ClipboardCheck, text: 'تقييم خاص قبل التوصية' },
                   { icon: Crown, text: 'منتج مخصص حسب وضعك' },
-                  { icon: MessageCircle, text: 'متابعة واتساب يومية' },
+                  { icon: MessageCircle, text: 'Daily Personal Follow-Up' },
                   { icon: CalendarCheck, text: 'برنامج 20–30 يوم' },
                   { icon: Lock, text: 'خصوصية تامة + شحن سري' },
                   { icon: ShieldCheck, text: 'ضمان 90 يوم كامل' },
@@ -607,9 +582,7 @@ const BrandComparisonSection = () => {
               {/* CTA */}
               <div className="mt-5">
                 <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
                   className="block w-full bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark text-center px-5 py-4 rounded-2xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
                 >
                   <span className="flex items-center justify-center gap-2">
@@ -700,7 +673,7 @@ const ComparisonTableSection = () => {
       pill: 'لا توجد — تشتري وتستخدم وحدك',
       spray: 'لا توجد — لا أحد يسأل عن نتيجتك',
       gel: 'لا توجد — لا دعم بعد الشراء',
-      ours: 'متابعة واتساب يومية 3–5 دقائق',
+      ours: 'Daily Personal Follow-Up 3–5 دقائق',
     },
     {
       label: 'الخصوصية',
@@ -886,9 +859,7 @@ const ComparisonTableSection = () => {
         {/* CTA after table */}
         <div className="mt-10 md:mt-12 text-center">
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
             className="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-green-dark text-white px-7 py-4 rounded-2xl font-bold text-base md:text-lg shadow-xl shadow-brand-green/30 transition-all hover:scale-[1.02] border-2 border-brand-gold"
           >
             <MessageCircle className="w-5 h-5 text-brand-gold" />
@@ -1219,7 +1190,7 @@ const OurValueSection = () => (
           },
           {
             icon: Headphones,
-            title: 'متابعة واتساب يومية',
+            title: 'Daily Personal Follow-Up',
             en: 'Daily 3-5 min Guidance',
             highlight: true,
             desc: '"هل يمكنك تخصيص 3–5 دقائق يومياً خلال البرنامج لمشاركتي تقدمك؟" — متابعة يومية شخصية مع مرشد خاص.',
@@ -1228,7 +1199,7 @@ const OurValueSection = () => (
             icon: Lock,
             title: 'خصوصية كاملة',
             en: 'Full Privacy',
-            desc: 'احترام كامل لخصوصيتك. تواصل سري عبر واتساب، تغليف بدون أي إشارة لمحتوى الطرد، ودفع عند الاستلام.',
+            desc: 'احترام كامل لخصوصيتك. Private direct communication، تغليف بدون أي إشارة لمحتوى الطرد، ودفع عند الاستلام.',
           },
           {
             icon: RotateCcw,
@@ -1352,7 +1323,7 @@ const BeforeAfterSection = () => (
             {[
               { text: 'تقييم خاص قبل التوصية', icon: ClipboardCheck },
               { text: 'منتج مخصص حسب وضعك', icon: Crown },
-              { text: 'متابعة واتساب يومية', icon: MessageCircle },
+              { text: 'Daily Personal Follow-Up', icon: MessageCircle },
               { text: 'خطة 20–30 يوم', icon: CalendarCheck },
               { text: 'خصوصية كاملة', icon: Lock },
               { text: 'ضمان 90 يوم', icon: ShieldCheck },
@@ -1372,9 +1343,7 @@ const BeforeAfterSection = () => (
 
           <div className="mt-6 pt-5 border-t border-brand-gold/30">
             <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               className="block w-full bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark text-center px-5 py-3.5 rounded-2xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
             >
               ابدأ تقييمك الخاص الآن
@@ -1473,7 +1442,7 @@ const FAQSection = () => {
           <ul className="space-y-1.5 mt-2 list-none">
             <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-brand-green mt-0.5 flex-shrink-0" /> الدفع عند الاستلام — لا تدفع شيئاً مقدماً</li>
             <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-brand-green mt-0.5 flex-shrink-0" /> ضمان 90 يوماً لاسترداد قيمة منتجك</li>
-            <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-brand-green mt-0.5 flex-shrink-0" /> متابعة يومية شخصية عبر واتساب</li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-brand-green mt-0.5 flex-shrink-0" /> Daily personal direct follow-up</li>
             <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-brand-green mt-0.5 flex-shrink-0" /> تركيبة طبيعية واعتمادات رسمية</li>
           </ul>
         </div>
@@ -1494,7 +1463,7 @@ const FAQSection = () => {
       q: 'أشعر بالإحراج من شراء هذا النوع من المنتجات.',
       a: (
         <p>
-          نحترم خصوصيتك تماماً. تواصلك معنا عبر <strong className="text-brand-green">واتساب فقط</strong>،
+          نحترم خصوصيتك تماماً. تواصلك معنا عبر <strong className="text-brand-green">exclusively</strong>،
           والمنتج يصلك في <strong className="text-brand-green">تغليف خاص بدون أي إشارة</strong> لمحتواه،
           والدفع <strong className="text-brand-green">عند الاستلام</strong> دون أي معاملات بنكية مكشوفة.
           لن يعرف أحد سواك.
@@ -1541,98 +1510,6 @@ const FAQSection = () => {
   )
 }
 
-// =====================================================================
-// SCREEN 9 — Final CTA
-// =====================================================================
-const FinalCTASection = () => (
-  <section className="py-14 md:py-24 bg-gradient-to-bl from-brand-green-dark via-brand-green to-brand-green-dark text-white relative overflow-hidden">
-    <div className="absolute inset-0 bg-pattern opacity-40" />
-    <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2" />
-    <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl translate-y-1/2" />
-
-    <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
-      <div className="inline-flex items-center gap-2 bg-brand-gold/20 border border-brand-gold/50 text-brand-gold-light px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-6">
-        <Flame className="w-4 h-4" />
-        <span>الخطوة الأخيرة</span>
-      </div>
-
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-5 leading-[1.2]">
-        توقف عن الاعتماد على
-        <span className="block text-gradient-gold mt-2">الحلول المؤقتة</span>
-      </h2>
-
-      <p className="text-base md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-        سواء جرّبت Viagra أو Cialis أو Snafi أو Procomil أو Himcolin من قبل —
-        الوقت الآن لخطة <strong className="text-brand-gold-light">مخصصة</strong> لحالتك أنت،
-        مع <strong className="text-brand-gold-light">متابعة يومية</strong> و
-        <strong className="text-brand-gold-light"> ضمان 90 يوم</strong>.
-      </p>
-
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 md:px-12 py-5 md:py-6 rounded-2xl font-black text-base md:text-xl shadow-2xl shadow-[#25D366]/40 transition-all hover:scale-[1.03] border-2 border-white/20 mb-10"
-      >
-        <MessageCircle className="w-6 h-6 md:w-7 md:h-7" />
-        <span>ابدأ الاستشارة الخاصة الآن</span>
-      </a>
-
-      {/* Trust points */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 max-w-3xl mx-auto">
-        {[
-          { icon: Banknote, label: 'دفع عند الاستلام', en: 'Cash on Delivery' },
-          { icon: PackageCheck, label: 'تغليف خاص وسري', en: 'Discreet Packaging' },
-          { icon: MessageCircle, label: 'متابعة عبر واتساب', en: 'WhatsApp Follow-up' },
-          { icon: ShieldCheck, label: 'ضمان 90 يوم', en: '90-Day Guarantee' },
-        ].map((t, i) => {
-          const Icon = t.icon
-          return (
-            <div key={i} className="bg-white/10 backdrop-blur border border-brand-gold/30 rounded-2xl p-4 md:p-5">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-gold rounded-xl flex items-center justify-center mx-auto mb-2.5 text-brand-green-dark">
-                <Icon className="w-5 h-5 md:w-6 md:h-6" />
-              </div>
-              <div className="font-bold text-xs md:text-base">{t.label}</div>
-              <div className="text-[10px] md:text-xs text-brand-gold-light mt-0.5" dir="ltr">{t.en}</div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  </section>
-)
-
-// =====================================================================
-// Sticky bottom CTA bar
-// =====================================================================
-const StickyBottomCTA = () => (
-  <div className="fixed bottom-0 inset-x-0 z-40 bg-brand-green-dark/95 backdrop-blur border-t-2 border-brand-gold/40 px-4 py-3 md:py-3.5 shadow-2xl">
-    <div className="max-w-5xl mx-auto flex items-center gap-3 justify-between">
-      <div className="hidden md:flex items-center gap-3 text-white">
-        <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center text-brand-green-dark flex-shrink-0">
-          <Crown className="w-5 h-5" />
-        </div>
-        <div>
-          <div className="text-sm font-bold">جاهز لخطة مخصصة لحالتك؟</div>
-          <div className="text-xs text-brand-gold-light">احصل على تقييم خاص بدون التزام</div>
-        </div>
-      </div>
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-5 md:px-7 py-3 md:py-3.5 rounded-xl font-bold text-sm md:text-base shadow-lg shadow-[#25D366]/30 transition-all"
-      >
-        <MessageCircle className="w-5 h-5" />
-        <span>تحدث معنا الآن</span>
-      </a>
-    </div>
-  </div>
-)
-
-// =====================================================================
-// Footer
-// =====================================================================
 const Footer = () => (
   <footer className="bg-brand-green-dark text-white/70 py-8 pb-28 md:pb-24 border-t-2 border-brand-gold/30">
     <div className="max-w-5xl mx-auto px-4 md:px-8 text-center">
@@ -1670,9 +1547,7 @@ export default function App() {
       <OurValueSection />
       <BeforeAfterSection />
       <FAQSection />
-      <FinalCTASection />
       <Footer />
-      <FloatingWhatsApp />
       <StickyBottomCTA />
     </div>
   )
