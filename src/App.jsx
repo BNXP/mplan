@@ -476,8 +476,8 @@ const HeroSection = () => (
             <div className="absolute -top-3 -right-3 bg-brand-gold text-brand-green-dark px-4 py-1.5 rounded-full text-xs font-black z-10 shadow-lg">
               مقارنة سريعة
             </div>
-            <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray"
-              <div className=\"mb-4\"><ReusableImage src={imageAssets.comparisonHero} alt=\"Product Comparison\" fallbackType=\"heroComparison\" containerClass=\"w-full h-32 md:h-40 rounded-xl\" /></div>>
+            <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray">
+              <div className="mb-4"><ReusableImage src={imageAssets.comparisonHero} alt="Product Comparison" fallbackType="heroComparison" containerClass="w-full h-32 md:h-40 rounded-xl" /></div>
 
               {[
                 {
