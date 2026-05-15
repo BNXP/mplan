@@ -51,6 +51,230 @@ import {
   Layers,
 } from 'lucide-react'
 
+// =====================================================================
+// Image Assets Configuration
+// =====================================================================
+const imageAssets = {
+  ourProductMain: "./images/our-product-main.png",
+  ourProductBox: "./images/our-product-box.png",
+  ourProductBottle: "./images/our-product-bottle.png",
+  pillProduct: "./images/generic-ed-pills.png",
+  pePillProduct: "./images/generic-pe-pills.png",
+  sprayProduct: "./images/generic-delay-spray.png",
+  gelProduct: "./images/generic-gel-cream.png",
+  comparisonHero: "./images/comparison-hero.png",
+  privateDelivery: "./images/private-delivery.png",
+  whatsappSupport: "./images/whatsapp-support.png",
+  guaranteeBadge: "./images/guarantee-badge.png",
+};
+
+// =====================================================================
+// SVG Fallback Components (shown when images fail to load)
+// =====================================================================
+const PillFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="60" y="20" width="80" height="100" rx="12" fill="#FEE2E2" stroke="#EF4444" strokeWidth="2" opacity="0.6"/>
+    <rect x="70" y="35" width="60" height="20" rx="4" fill="white" opacity="0.8"/>
+    <text x="100" y="50" textAnchor="middle" fill="#DC2626" fontSize="10" fontWeight="800" fontFamily="Arial">PILLS</text>
+    <ellipse cx="85" cy="80" rx="16" ry="9" fill="#3B82F6" opacity="0.7" transform="rotate(-15 85 80)"/>
+    <ellipse cx="115" cy="75" rx="16" ry="9" fill="#3B82F6" opacity="0.5" transform="rotate(20 115 75)"/>
+    <ellipse cx="100" cy="100" rx="16" ry="9" fill="#EF4444" opacity="0.5" transform="rotate(-5 100 100)"/>
+    <text x="100" y="140" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontWeight="600" fontFamily="Arial">Generic ED Pills</text>
+  </svg>
+);
+
+const PEPillFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="60" y="20" width="80" height="100" rx="12" fill="#FEE2E2" stroke="#EF4444" strokeWidth="2" opacity="0.6"/>
+    <rect x="70" y="35" width="60" height="20" rx="4" fill="white" opacity="0.8"/>
+    <text x="100" y="50" textAnchor="middle" fill="#DC2626" fontSize="10" fontWeight="800" fontFamily="Arial">TABLETS</text>
+    <ellipse cx="90" cy="80" rx="14" ry="8" fill="#F59E0B" opacity="0.7" transform="rotate(-10 90 80)"/>
+    <ellipse cx="110" cy="75" rx="14" ry="8" fill="#F59E0B" opacity="0.5" transform="rotate(15 110 75)"/>
+    <ellipse cx="100" cy="100" rx="14" ry="8" fill="#F97316" opacity="0.5" transform="rotate(5 100 100)"/>
+    <text x="100" y="140" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontWeight="600" fontFamily="Arial">Generic PE Pills</text>
+  </svg>
+);
+
+const SprayFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="75" y="30" width="50" height="80" rx="10" fill="#FFEDD5" stroke="#F97316" strokeWidth="2" opacity="0.6"/>
+    <rect x="88" y="15" width="24" height="18" rx="4" fill="#F97316" opacity="0.4"/>
+    <rect x="82" y="20" width="12" height="8" rx="2" fill="#F97316" opacity="0.5"/>
+    <line x1="60" y1="25" x2="40" y2="20" stroke="#F97316" strokeWidth="2" opacity="0.4" strokeLinecap="round"/>
+    <line x1="58" y1="30" x2="35" y2="28" stroke="#F97316" strokeWidth="2" opacity="0.4" strokeLinecap="round"/>
+    <line x1="60" y1="35" x2="40" y2="36" stroke="#F97316" strokeWidth="2" opacity="0.4" strokeLinecap="round"/>
+    <text x="100" y="130" textAnchor="middle" fill="#F97316" fontSize="9" fontWeight="700" fontFamily="Arial">SPRAY</text>
+    <text x="100" y="145" textAnchor="middle" fill="#9CA3AF" fontSize="8" fontFamily="Arial">Generic Delay Spray</text>
+  </svg>
+);
+
+const GelFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <path d="M75 25 L80 120 Q100 130 120 120 L125 25 Z" fill="#FFEDD5" stroke="#F97316" strokeWidth="2" opacity="0.6"/>
+    <rect x="75" y="15" width="50" height="14" rx="3" fill="#F97316" opacity="0.4"/>
+    <line x1="80" y1="18" x2="80" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <line x1="88" y1="16" x2="88" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <line x1="96" y1="15" x2="96" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <line x1="104" y1="15" x2="104" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <line x1="112" y1="16" x2="112" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <line x1="120" y1="18" x2="120" y2="27" stroke="#F97316" strokeWidth="1" opacity="0.5"/>
+    <rect x="88" y="118" width="24" height="18" rx="4" fill="#F97316" opacity="0.4"/>
+    <text x="100" y="95" textAnchor="middle" fill="#F97316" fontSize="9" fontWeight="700" fontFamily="Arial">GEL</text>
+    <text x="100" y="150" textAnchor="middle" fill="#9CA3AF" fontSize="8" fontFamily="Arial">Generic Gel/Cream</text>
+  </svg>
+);
+
+const ProductFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="45" y="20" width="110" height="110" rx="14" fill="#064E3B" stroke="#D4AF37" strokeWidth="3"/>
+    <rect x="45" y="20" width="110" height="28" rx="14" fill="#D4AF37" opacity="0.2"/>
+    <rect x="45" y="40" width="110" height="12" fill="#D4AF37" opacity="0.35"/>
+    <path d="M85 55 L92 42 L98 48 L105 38 L112 48 L118 42 L125 55 Z" fill="#D4AF37" opacity="0.9"/>
+    <rect x="60" y="72" width="80" height="42" rx="6" fill="white" opacity="0.1" stroke="#D4AF37" strokeWidth="1.5"/>
+    <text x="100" y="92" textAnchor="middle" fill="#D4AF37" fontSize="10" fontWeight="800" fontFamily="Arial">CUSTOM</text>
+    <text x="100" y="106" textAnchor="middle" fill="#D4AF37" fontSize="8" fontWeight="600" fontFamily="Arial">PRODUCT</text>
+    <circle cx="100" cy="125" r="10" fill="#D4AF37" opacity="0.8"/>
+    <path d="M94 125 L98 129 L106 121" stroke="#064E3B" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <text x="100" y="150" textAnchor="middle" fill="#D4AF37" fontSize="8" fontWeight="600" fontFamily="Arial">Upload your image</text>
+  </svg>
+);
+
+const DeliveryFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="40" y="30" width="120" height="90" rx="10" fill="#F3F4F6" stroke="#9CA3AF" strokeWidth="2" strokeDasharray="4 4"/>
+    <rect x="55" y="45" width="90" height="60" rx="6" fill="white" stroke="#D1D5DB" strokeWidth="1.5"/>
+    <rect x="70" y="55" width="60" height="8" rx="2" fill="#E5E7EB"/>
+    <rect x="70" y="70" width="40" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="70" y="82" width="50" height="6" rx="2" fill="#E5E7EB"/>
+    <circle cx="145" cy="110" r="14" fill="#064E3B" opacity="0.9"/>
+    <path d="M138 110 L143 115 L152 106" stroke="#D4AF37" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <text x="100" y="145" textAnchor="middle" fill="#6B7280" fontSize="8" fontWeight="600" fontFamily="Arial">Private Packaging</text>
+  </svg>
+);
+
+const ChatFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="50" y="15" width="100" height="130" rx="16" fill="#1F2937" stroke="#374151" strokeWidth="2"/>
+    <rect x="50" y="15" width="100" height="24" rx="16" fill="#374151"/>
+    <circle cx="65" cy="27" r="6" fill="#10B981"/>
+    <rect x="78" y="23" width="40" height="8" rx="2" fill="#6B7280"/>
+    <rect x="55" y="50" width="70" height="18" rx="8" fill="#064E3B"/>
+    <text x="90" y="62" textAnchor="middle" fill="white" fontSize="7" fontWeight="600" fontFamily="Arial">Daily check-in</text>
+    <rect x="75" y="75" width="70" height="18" rx="8" fill="#374151"/>
+    <text x="110" y="87" textAnchor="middle" fill="#D1D5DB" fontSize="7" fontWeight="600" fontFamily="Arial">How are you?</text>
+    <rect x="55" y="100" width="60" height="18" rx="8" fill="#064E3B"/>
+    <text x="85" y="112" textAnchor="middle" fill="white" fontSize="7" fontWeight="600" fontFamily="Arial">Feeling good</text>
+    <rect x="75" y="125" width="50" height="8" rx="4" fill="#6B7280" opacity="0.5"/>
+    <text x="100" y="155" textAnchor="middle" fill="#6B7280" fontSize="8" fontWeight="600" fontFamily="Arial">WhatsApp Guidance</text>
+  </svg>
+);
+
+const GuaranteeFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <path d="M100 20 L125 32 L125 70 Q125 95 100 110 Q75 95 75 70 L75 32 Z" fill="#064E3B" stroke="#D4AF37" strokeWidth="2.5"/>
+    <path d="M88 55 L96 63 L112 47" stroke="#D4AF37" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <text x="100" y="85" textAnchor="middle" fill="#D4AF37" fontSize="11" fontWeight="900" fontFamily="Arial">90</text>
+    <text x="100" y="100" textAnchor="middle" fill="#D4AF37" fontSize="7" fontWeight="700" fontFamily="Arial">DAYS</text>
+    <text x="100" y="130" textAnchor="middle" fill="#6B7280" fontSize="9" fontWeight="700" fontFamily="Arial">Money-Back Guarantee</text>
+  </svg>
+);
+
+const WarningPillFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="50" y="25" width="100" height="90" rx="12" fill="#FEF2F2" stroke="#EF4444" strokeWidth="2" opacity="0.4"/>
+    <ellipse cx="100" cy="70" rx="20" ry="12" fill="#EF4444" opacity="0.3" transform="rotate(-10 100 70)"/>
+    <ellipse cx="85" cy="85" rx="16" ry="9" fill="#3B82F6" opacity="0.4" transform="rotate(15 85 85)"/>
+    <circle cx="155" cy="35" r="16" fill="#EF4444" opacity="0.9"/>
+    <path d="M148 35 L162 35 M155 28 L155 42" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <text x="100" y="135" textAnchor="middle" fill="#EF4444" fontSize="9" fontWeight="700" fontFamily="Arial">Temporary Only</text>
+  </svg>
+);
+
+const WarningSprayFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <rect x="80" y="30" width="40" height="70" rx="8" fill="#FFF7ED" stroke="#F97316" strokeWidth="2" opacity="0.4"/>
+    <rect x="90" y="18" width="20" height="14" rx="3" fill="#F97316" opacity="0.4"/>
+    <line x1="55" y1="22" x2="40" y2="18" stroke="#F97316" strokeWidth="2" opacity="0.4" strokeLinecap="round"/>
+    <line x1="53" y1="28" x2="35" y2="26" stroke="#F97316" strokeWidth="2" opacity="0.4" strokeLinecap="round"/>
+    <circle cx="155" cy="40" r="16" fill="#F97316" opacity="0.9"/>
+    <path d="M148 40 L162 40 M155 33 L155 47" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <text x="100" y="125" textAnchor="middle" fill="#F97316" fontSize="9" fontWeight="700" fontFamily="Arial">Numbing Effect</text>
+  </svg>
+);
+
+const WarningGelFallback = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full">
+    <path d="M80 25 L85 100 Q100 108 115 100 L120 25 Z" fill="#FFF7ED" stroke="#F97316" strokeWidth="2" opacity="0.4"/>
+    <rect x="80" y="18" width="40" height="10" rx="2" fill="#F97316" opacity="0.4"/>
+    <rect x="92" y="105" width="16" height="12" rx="3" fill="#F97316" opacity="0.4"/>
+    <circle cx="155" cy="40" r="16" fill="#F97316" opacity="0.9"/>
+    <path d="M148 40 L162 40 M155 33 L155 47" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    <text x="100" y="135" textAnchor="middle" fill="#F97316" fontSize="9" fontWeight="700" fontFamily="Arial">Surface Level Only</text>
+  </svg>
+);
+
+const HeroComparisonFallback = () => (
+  <svg viewBox="0 0 400 200" className="w-full h-full">
+    <rect x="20" y="30" width="160" height="140" rx="16" fill="#F9FAFB" stroke="#E5E7EB" strokeWidth="2"/>
+    <text x="100" y="55" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontWeight="800" fontFamily="Arial">COMMON PRODUCTS</text>
+    <ellipse cx="70" cy="90" rx="18" ry="10" fill="#3B82F6" opacity="0.4" transform="rotate(-15 70 90)"/>
+    <ellipse cx="110" cy="85" rx="18" ry="10" fill="#EF4444" opacity="0.3" transform="rotate(10 110 85)"/>
+    <rect x="55" y="110" width="30" height="40" rx="6" fill="#FFEDD5" stroke="#F97316" strokeWidth="1.5" opacity="0.5"/>
+    <path d="M135 110 L140 150 Q150 155 160 150 L165 110 Z" fill="#FFF7ED" stroke="#F97316" strokeWidth="1.5" opacity="0.5"/>
+    <text x="100" y="170" textAnchor="middle" fill="#EF4444" fontSize="8" fontWeight="700" fontFamily="Arial">Temporary / Numbing</text>
+    <path d="M200 100 L220 100 M215 95 L220 100 L215 105" stroke="#D4AF37" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <rect x="220" y="20" width="160" height="160" rx="16" fill="#064E3B" stroke="#D4AF37" strokeWidth="3"/>
+    <rect x="220" y="20" width="160" height="35" rx="16" fill="#D4AF37" opacity="0.2"/>
+    <path d="M285 55 L292 42 L298 48 L305 38 L312 48 L318 42 L325 55 Z" fill="#D4AF37" opacity="0.9"/>
+    <rect x="245" y="75" width="110" height="55" rx="8" fill="white" opacity="0.1" stroke="#D4AF37" strokeWidth="1.5"/>
+    <text x="300" y="100" textAnchor="middle" fill="#D4AF37" fontSize="12" fontWeight="900" fontFamily="Arial">CUSTOM PLAN</text>
+    <text x="300" y="118" textAnchor="middle" fill="#D4AF37" fontSize="8" fontWeight="600" fontFamily="Arial">Personalized for YOU</text>
+    <circle cx="300" cy="155" r="10" fill="#D4AF37" opacity="0.8"/>
+    <path d="M294 155 L298 159 L306 151" stroke="#064E3B" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const fallbackMap = {
+  pill: PillFallback,
+  pePill: PEPillFallback,
+  spray: SprayFallback,
+  gel: GelFallback,
+  product: ProductFallback,
+  delivery: DeliveryFallback,
+  chat: ChatFallback,
+  guarantee: GuaranteeFallback,
+  warningPill: WarningPillFallback,
+  warningSpray: WarningSprayFallback,
+  warningGel: WarningGelFallback,
+  heroComparison: HeroComparisonFallback,
+};
+
+const ReusableImage = ({ src, alt, className = '', fallbackType = 'product', containerClass = '' }) => {
+  const [error, setError] = React.useState(false);
+  const Fallback = fallbackMap[fallbackType] || ProductFallback;
+
+  if (error || !src) {
+    return (
+      <div className={`bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden ${containerClass}`}>
+        <Fallback />
+      </div>
+    );
+  }
+
+  return (
+    <div className={`overflow-hidden ${containerClass}`}>
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover ${className}`}
+        onError={() => setError(true)}
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
+
 
 // =====================================================================
 // SVG Product Images
@@ -252,7 +476,8 @@ const HeroSection = () => (
             <div className="absolute -top-3 -right-3 bg-brand-gold text-brand-green-dark px-4 py-1.5 rounded-full text-xs font-black z-10 shadow-lg">
               مقارنة سريعة
             </div>
-            <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray">
+            <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray"
+              <div className=\"mb-4\"><ReusableImage src={imageAssets.comparisonHero} alt=\"Product Comparison\" fallbackType=\"heroComparison\" containerClass=\"w-full h-32 md:h-40 rounded-xl\" /></div>>
 
               {[
                 {
@@ -353,7 +578,7 @@ const BrandComparisonSection = () => {
     {
       id: 'ed-pills',
       icon: Pill,
-      productImg: <PillBottleImg color="#DC2626" />,
+      productImg: <ReusableImage src={imageAssets.pillProduct} alt="Generic ED Pills" fallbackType="pill" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
       titleAr: 'حبوب الانتصاب',
       titleEn: 'ED Pills',
       brands: ['Viagra', 'Sildenafil', 'Cialis', 'Tadalafil', 'Snafi', 'Erecta', 'Wafi', 'Tadil', 'Herox'],
@@ -370,7 +595,7 @@ const BrandComparisonSection = () => {
     {
       id: 'pe-pills',
       icon: Pill,
-      productImg: <PillBottleImg color="#B91C1C" />,
+      productImg: <ReusableImage src={imageAssets.pePillProduct} alt="Generic PE Pills" fallbackType="pePill" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
       titleAr: 'حبوب تأخير القذف',
       titleEn: 'PE Pills',
       brands: ['Priligy', 'Dapoxetine', 'Lejam', 'Endura'],
@@ -387,7 +612,7 @@ const BrandComparisonSection = () => {
     {
       id: 'delay-sprays',
       icon: Wind,
-      productImg: <SprayBottleImg color="#EA580C" />,
+      productImg: <ReusableImage src={imageAssets.sprayProduct} alt="Generic Delay Spray" fallbackType="spray" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
       titleAr: 'بخاخات التأخير',
       titleEn: 'Delay Sprays',
       brands: ['Procomil', 'Dynamo', 'Stud 100', 'pjur med PROLONG', 'Eros', 'Viga X', 'Xcite'],
@@ -404,7 +629,7 @@ const BrandComparisonSection = () => {
     {
       id: 'gels-creams',
       icon: Droplet,
-      productImg: <CreamTubeImg color="#EA580C" />,
+      productImg: <ReusableImage src={imageAssets.gelProduct} alt="Generic Gel Cream" fallbackType="gel" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
       titleAr: 'الجل والكريمات',
       titleEn: 'Gels & Creams',
       brands: ['Himcolin', 'Eroxon', 'Vittal Gel', 'Lidocaine Cream', 'Lidocaine Ointment', 'Prila 5%', 'EMLA'],
@@ -522,7 +747,7 @@ const BrandComparisonSection = () => {
 
               {/* Product Image */}
               <div className="mt-4 mb-5">
-                <PremiumPackageImg />
+                <ReusableImage src={imageAssets.ourProductMain} alt="Our Custom Product" fallbackType="product" containerClass="w-24 h-26 md:w-32 md:h-36 mx-auto" />
               </div>
 
               {/* Title */}
@@ -721,6 +946,7 @@ const ComparisonTableSection = () => {
                       <Pill className="w-6 h-6 text-red-500" />
                       <span>حبوب ED/PE</span>
                       <span className="text-[10px] font-normal text-red-400" dir="ltr">Viagra · Priligy · Snafi</span>
+                      <div className="mt-1"><ReusableImage src={imageAssets.pillProduct} alt="ED Pills" fallbackType="pill" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
                     </div>
                   </th>
                   <th className="bg-orange-50 text-orange-700 py-5 px-3 font-bold text-sm w-[18%] border-b-2 border-orange-200">
@@ -728,6 +954,7 @@ const ComparisonTableSection = () => {
                       <Wind className="w-6 h-6 text-orange-500" />
                       <span>بخاخ التأخير</span>
                       <span className="text-[10px] font-normal text-orange-400" dir="ltr">Procomil · Dynamo · Stud 100</span>
+                      <div className="mt-1"><ReusableImage src={imageAssets.sprayProduct} alt="Delay Spray" fallbackType="spray" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
                     </div>
                   </th>
                   <th className="bg-orange-50 text-orange-700 py-5 px-3 font-bold text-sm w-[18%] border-b-2 border-orange-200">
@@ -735,6 +962,7 @@ const ComparisonTableSection = () => {
                       <Droplet className="w-6 h-6 text-orange-500" />
                       <span>جل / كريم</span>
                       <span className="text-[10px] font-normal text-orange-400" dir="ltr">Himcolin · Eroxon · Lidocaine</span>
+                      <div className="mt-1"><ReusableImage src={imageAssets.gelProduct} alt="Gels" fallbackType="gel" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
                     </div>
                   </th>
                   <th className="bg-gradient-to-b from-brand-green to-brand-green-dark text-white py-5 px-4 font-bold text-sm w-[28%] relative border-b-4 border-brand-gold">
@@ -882,6 +1110,7 @@ const SideEffectsSection = () => {
       title: 'الحبوب قد تساعد مؤقتاً، لكنها ليست مناسبة للجميع',
       subtitle: 'ED Pills: Viagra / Cialis / Snafi / Erecta / Wafi / Tadil / Herox · PE Pills: Priligy / Dapoxetine / Lejam / Endura',
       color: 'red',
+      warningImg: <ReusableImage src={imageAssets.pillProduct} alt="Warning: ED Pills" fallbackType="warningPill" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
       issues: [
         { icon: Clock, text: 'موجهة بشكل أساسي لدعم انتصاب قصير المدى أو تأخير وقتي' },
         { icon: Activity, text: 'تحتاج لإثارة جنسية كي تعمل (Viagra/Cialis)' },
@@ -898,6 +1127,7 @@ const SideEffectsSection = () => {
       title: 'البخاخات تؤخر أحياناً لأنها تُخدّر الإحساس',
       subtitle: 'Procomil / Dynamo / Stud 100 / pjur med PROLONG / Eros / Viga X / Xcite',
       color: 'orange',
+      warningImg: <ReusableImage src={imageAssets.sprayProduct} alt="Warning: Delay Sprays" fallbackType="warningSpray" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
       issues: [
         { icon: Frown, text: 'ليست تحسيناً لحالتك — بل تقليل للحس فقط' },
         { icon: Wind, text: 'قد تسبب خدر غير مريح في المنطقة' },
@@ -913,6 +1143,7 @@ const SideEffectsSection = () => {
       title: 'الكريمات والجل تعمل على السطح فقط',
       subtitle: 'Himcolin / Eroxon / Vittal / Lidocaine Cream / Lidocaine Ointment / Prila 5% / EMLA',
       color: 'orange',
+      warningImg: <ReusableImage src={imageAssets.gelProduct} alt="Warning: Gels" fallbackType="warningGel" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
       issues: [
         { icon: Target, text: 'تأثير محصور في موضع الدهن فقط' },
         { icon: Frown, text: 'قد تكون لزجة وتترك بقايا أو بقع على الملابس' },
