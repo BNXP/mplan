@@ -191,12 +191,18 @@ const FloatingWhatsApp = () => (
 // Top Trust Bar
 // =====================================================================
 const TopBar = () => (
-  <div className="bg-brand-green-dark text-white py-2 text-center text-xs md:text-sm font-medium border-b border-brand-gold/30">
+  <div className="relative bg-brand-green-dark text-white py-2 text-center text-xs md:text-sm font-medium border-b border-brand-gold/30">
+    <a
+      href="index.html"
+      className="absolute top-1/2 -translate-y-1/2 right-3 md:right-5 bg-brand-gold/20 hover:bg-brand-gold/40 text-brand-gold-light px-2.5 py-1 rounded-full text-[11px] md:text-xs font-bold transition-colors z-10"
+    >
+      العربية
+    </a>
     <div className="flex items-center justify-center gap-3 md:gap-6 flex-wrap px-4">
-      <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5 text-brand-gold" /> سرية تامة</span>
-      <span className="hidden sm:flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-brand-gold" /> الدفع عند الاستلام</span>
-      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-brand-gold" /> ضمان 90 يوم</span>
-      <span className="hidden md:flex items-center gap-1.5"><Headphones className="w-3.5 h-3.5 text-brand-gold" /> متابعة عبر واتساب</span>
+      <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5 text-brand-gold" /> Full Privacy</span>
+      <span className="hidden sm:flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-brand-gold" /> Cash on Delivery</span>
+      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-brand-gold" /> 90-Day Guarantee</span>
+      <span className="hidden md:flex items-center gap-1.5"><Headphones className="w-3.5 h-3.5 text-brand-gold" /> Daily Personal Follow-Up</span>
     </div>
   </div>
 )
