@@ -1212,6 +1212,7 @@ const SideEffectsSection = () => {
       subtitle: 'ED Pills: Viagra / Cialis / Snafi / Erecta / Wafi / Tadil / Herox · PE Pills: Priligy / Dapoxetine / Lejam / Endura',
       color: 'red',
       warningImg: <ReusableImage src={imageAssets.pillProduct} alt="Warning: ED Pills" fallbackType="warningPill" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
+      productStrip: <ProductImageStrip images={productImages.edPills.slice(0,3)} fallbackType="pill" label="Viagra / Cialis / Snafi" />,
       issues: [
         { icon: Clock, text: 'موجهة بشكل أساسي لدعم انتصاب قصير المدى أو تأخير وقتي' },
         { icon: Activity, text: 'تحتاج لإثارة جنسية كي تعمل (Viagra/Cialis)' },
@@ -1229,6 +1230,7 @@ const SideEffectsSection = () => {
       subtitle: 'Procomil / Dynamo / Stud 100 / pjur med PROLONG / Eros / Viga X / Xcite',
       color: 'orange',
       warningImg: <ReusableImage src={imageAssets.sprayProduct} alt="Warning: Delay Sprays" fallbackType="warningSpray" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
+      productStrip: <ProductImageStrip images={productImages.sprays.slice(0,3)} fallbackType="spray" label="Procomil / Dynamo / Stud 100" />,
       issues: [
         { icon: Frown, text: 'ليست تحسيناً لحالتك — بل تقليل للحس فقط' },
         { icon: Wind, text: 'قد تسبب خدر غير مريح في المنطقة' },
@@ -1245,6 +1247,7 @@ const SideEffectsSection = () => {
       subtitle: 'Himcolin / Eroxon / Vittal / Lidocaine Cream / Lidocaine Ointment / Prila 5% / EMLA',
       color: 'orange',
       warningImg: <ReusableImage src={imageAssets.gelProduct} alt="Warning: Gels" fallbackType="warningGel" containerClass="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4" />,
+      productStrip: <ProductImageStrip images={[productImages.gels[0], productImages.gels[1], productImages.gels[4]]} fallbackType="gel" label="Himcolin / Eroxon / Lidocaine Cream" />,
       issues: [
         { icon: Target, text: 'تأثير محصور في موضع الدهن فقط' },
         { icon: Frown, text: 'قد تكون لزجة وتترك بقايا أو بقع على الملابس' },
@@ -1291,6 +1294,9 @@ const SideEffectsSection = () => {
                 <div className={`absolute top-0 bottom-0 right-0 w-2 ${m.color === 'red' ? 'bg-red-500' : 'bg-orange-500'}`} />
 
                 <div className="p-6 md:p-8">
+                  {m.productStrip && (
+                    <div className="mb-6 max-w-md mx-auto">{m.productStrip}</div>
+                  )}
                   <div className="flex items-start gap-4 mb-6">
                     <div className={`flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center ${
                       m.color === 'red' ? 'bg-red-50 border-2 border-red-100' : 'bg-orange-50 border-2 border-orange-100'
