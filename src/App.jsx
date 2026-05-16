@@ -680,13 +680,13 @@ const BrandComparisonSection = () => {
     {
       id: 'ed-pills',
       icon: Pill,
-      productImg: <ProductImageStrip images={productImages.edPills} fallbackType="pill" label="Viagra / Cialis / Snafi" />,
+      productImg: <ProductImageStrip images={productImages.edPills} fallbackType="pill" label="Viagra / Cialis / Snafi / Erecta / Wafi" />,
       titleAr: 'حبوب الانتصاب',
       titleEn: 'ED Pills',
-      brands: ['Viagra', 'Sildenafil', 'Cialis', 'Tadalafil', 'Snafi', 'Erecta', 'Wafi', 'Tadil', 'Herox'],
+      brands: ['Viagra', 'Cialis', 'Snafi', 'Erecta', 'Wafi'],
       badge: 'Temporary · مؤقت',
       badgeColor: 'bg-red-600',
-      limitation: 'دعم انتصاب مؤقت فقط — لا يعالج الجذر',
+      limitation: 'دعم مؤقت للانتصاب — ليس حلاً مخصصاً',
       warningPoints: [
         'تأثير مؤقت يزول بعد ساعات',
         'آثار جانبية: صداع، احمرار، عسر هضم',
@@ -697,13 +697,13 @@ const BrandComparisonSection = () => {
     {
       id: 'pe-pills',
       icon: Pill,
-      productImg: <ProductImageStrip images={productImages.pePills} fallbackType="pill" label="Priligy / Lejam / Endura" />,
+      productImg: <ProductImageStrip images={productImages.pePills} fallbackType="pill" label="Priligy / Lejam / Dapoxetine / Endura" />,
       titleAr: 'حبوب تأخير القذف',
       titleEn: 'PE Pills',
-      brands: ['Priligy', 'Dapoxetine', 'Lejam', 'Endura'],
+      brands: ['Priligy', 'Lejam', 'Dapoxetine', 'Endura'],
       badge: 'On-demand · عند الحاجة',
       badgeColor: 'bg-red-500',
-      limitation: 'دواء عند الحاجة فقط — لا خطة علاجية',
+      limitation: 'دواء عند الحاجة فقط — لا يقدم خطة كاملة',
       warningPoints: [
         'يُؤخذ قبل كل علاقة',
         'لا معالجة للسبب الأساسي',
@@ -714,13 +714,13 @@ const BrandComparisonSection = () => {
     {
       id: 'delay-sprays',
       icon: Wind,
-      productImg: <ProductImageStrip images={productImages.sprays} fallbackType="spray" label="Procomil / Dynamo / Stud 100" />,
+      productImg: <ProductImageStrip images={productImages.sprays} fallbackType="spray" label="Procomil / Dynamo / Stud 100 / pjur PROLONG / Eros Delay Spray" />,
       titleAr: 'بخاخات التأخير',
       titleEn: 'Delay Sprays',
-      brands: ['Procomil', 'Dynamo', 'Stud 100', 'pjur med PROLONG', 'Eros', 'Viga X', 'Xcite'],
+      brands: ['Procomil', 'Dynamo', 'Stud 100', 'pjur PROLONG', 'Eros Delay Spray'],
       badge: 'Numbing · تخدير',
       badgeColor: 'bg-orange-500',
-      limitation: 'تُخدّر الإحساس — لا تحسّن الأداء',
+      limitation: 'تأخير عن طريق تقليل الإحساس — قد يسبب خَدَراً',
       warningPoints: [
         'تقلل متعتك أنت أيضاً',
         'قد تؤثر على الشريكة',
@@ -731,13 +731,13 @@ const BrandComparisonSection = () => {
     {
       id: 'gels-creams',
       icon: Droplet,
-      productImg: <ProductImageStrip images={productImages.gels} fallbackType="gel" label="Himcolin / Eroxon / Lidocaine" />,
-      titleAr: 'الجل والكريمات',
+      productImg: <ProductImageStrip images={productImages.gels} fallbackType="gel" label="Himcolin Gel / Eroxon Gel / Prila 5% / EMLA / Lidocaine Cream" />,
+      titleAr: 'الكريمات والجل',
       titleEn: 'Gels & Creams',
-      brands: ['Himcolin', 'Eroxon', 'Vittal Gel', 'Lidocaine Cream', 'Lidocaine Ointment', 'Prila 5%', 'EMLA'],
+      brands: ['Himcolin Gel', 'Eroxon Gel', 'Prila 5%', 'EMLA', 'Lidocaine Cream'],
       badge: 'Surface · سطحي',
       badgeColor: 'bg-orange-500',
-      limitation: 'تأثير سطحي محدود — لا يصل للجذر',
+      limitation: 'تأثير موضعي على السطح — ليس خطة مخصصة',
       warningPoints: [
         'لزج وقد يترك بقايا',
         'يحتاج وقتاً للامتصاص',
@@ -855,9 +855,12 @@ const BrandComparisonSection = () => {
               {/* Title */}
               <div className="text-center mb-5">
                 <h3 className="text-xl md:text-2xl font-black text-brand-gold-light leading-snug mb-1">
-                  خطة مخصصة لحالتك
+                  خطتنا المخصصة
                 </h3>
                 <div className="text-sm text-white/70 font-bold" dir="ltr">Personalized Full-Cycle Plan</div>
+                <div className="mt-3 inline-block bg-brand-gold/15 border border-brand-gold/40 text-brand-gold-light px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold leading-snug">
+                  منتج مخصص حسب حالتك + متابعة خاصة + برنامج 20–30 يوم
+                </div>
               </div>
 
               {/* Value propositions */}
