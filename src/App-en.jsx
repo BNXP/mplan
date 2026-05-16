@@ -234,6 +234,108 @@ const HeroComparisonFallback = () => (
   </svg>
 );
 
+
+// =====================================================================
+// Product Images Configuration
+// =====================================================================
+const productImages = {
+  edPills: [
+    "./images/competitors/viagra.png",
+    "./images/competitors/cialis.png",
+    "./images/competitors/snafi.png",
+    "./images/competitors/erecta.png",
+    "./images/competitors/wafi.png"
+  ],
+  pePills: [
+    "./images/competitors/priligy.png",
+    "./images/competitors/lejam.png",
+    "./images/competitors/endura.png"
+  ],
+  sprays: [
+    "./images/competitors/procomil.png",
+    "./images/competitors/dynamo.png",
+    "./images/competitors/stud100.png",
+    "./images/competitors/pjur-prolong.png",
+    "./images/competitors/eros-delay.png"
+  ],
+  gels: [
+    "./images/competitors/himcolin.png",
+    "./images/competitors/eroxon.png",
+    "./images/competitors/prila-cream.png",
+    "./images/competitors/emla-cream.png",
+    "./images/competitors/lidocaine-cream.png"
+  ],
+  ourProduct: [
+    "./images/our-product-main.png",
+    "./images/our-product-box.png",
+    "./images/our-product-bottle.png"
+  ]
+};
+
+// =====================================================================
+// ProductImageStrip - Overlapping product image wall
+// =====================================================================
+const ProductImageStrip = ({ images, fallbackType = 'product', label = '', isOurs = false }) => {
+  const [loaded, setLoaded] = React.useState({});
+  const [allFailed, setAllFailed] = React.useState(false);
+  const Fallback = fallbackMap[fallbackType] || ProductFallback;
+
+  const visibleCount = Object.values(loaded).filter(v => v).length;
+  React.useEffect(() => {
+    if (images.length > 0 && Object.keys(loaded).length === images.length && visibleCount === 0) {
+      setAllFailed(true);
+    }
+  }, [loaded, visibleCount, images.length]);
+
+  if (allFailed) {
+    return (
+      <div className={`rounded-3xl overflow-hidden p-4 ${isOurs ? 'bg-gradient-to-b from-brand-green to-brand-green-dark border-2 border-brand-gold' : 'bg-gray-50 border border-gray-200'}`}>
+        <div className={`w-full h-28 md:h-36 ${isOurs ? 'text-white' : 'text-gray-500'}`}>
+          <Fallback />
+        </div>
+        {label && <div className={`text-center text-xs font-bold mt-2 ${isOurs ? 'text-brand-gold' : 'text-gray-400'}`} dir="ltr">{label}</div>}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`relative rounded-3xl overflow-hidden p-3 md:p-4 ${
+      isOurs 
+        ? 'bg-gradient-to-b from-brand-green/10 to-brand-green-dark/10 border-2 border-brand-gold/40' 
+        : 'bg-white border-2 border-red-100'
+    }`}>
+      <div className="flex items-center justify-center -space-x-4 md:-space-x-6">
+        {images.map((src, i) => (
+          <div
+            key={i}
+            className={`relative flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border-2 transition-all hover:z-10 hover:scale-105 ${
+              isOurs ? 'border-brand-gold/50' : 'border-gray-200'
+            } ${loaded[i] ? 'block' : 'hidden'}`}
+            style={{ zIndex: images.length - i }}
+          >
+            <img
+              src={src}
+              alt={`${label} ${i + 1}`}
+              className={`object-contain ${isOurs ? 'h-28 md:h-44 w-20 md:w-28' : 'h-20 md:h-32 w-14 md:w-20'}`}
+              onLoad={() => setLoaded(prev => ({ ...prev, [i]: true }))}
+              onError={() => setLoaded(prev => ({ ...prev, [i]: false }))}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+      {label && (
+        <div className={`text-center mt-2 md:mt-3 text-[11px] md:text-xs font-bold tracking-wide ${
+          isOurs ? 'text-brand-green' : 'text-gray-500'
+        }`} dir="ltr">
+          {label}
+        </div>
+      )}
+    </div>
+  );
+};
+
+
 const fallbackMap = {
   pill: PillFallback,
   pePill: PEPillFallback,
@@ -476,7 +578,7 @@ const HeroSection = () => (
               مقارنة سريعة
             </div>
             <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray">
-              <div className="mb-4"><ReusableImage src={imageAssets.comparisonHero} alt="Product Comparison" fallbackType="heroComparison" containerClass="w-full h-32 md:h-40 rounded-xl" /></div>
+              <div className="mb-4"><ProductImageStrip images={productImages.ourProduct} fallbackType="product" label="Our Product" isOurs={true} /></div>
 
               {[
                 {
@@ -577,7 +679,7 @@ const BrandComparisonSection = () => {
     {
       id: 'ed-pills',
       icon: Pill,
-      productImg: <ReusableImage src={imageAssets.pillProduct} alt="Generic ED Pills" fallbackType="pill" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
+      productImg: <ProductImageStrip images={productImages.edPills} fallbackType="pill" label="Viagra / Cialis / Snafi" />,
       titleAr: 'حبوب الانتصاب',
       titleEn: 'ED Pills',
       brands: ['Viagra', 'Sildenafil', 'Cialis', 'Tadalafil', 'Snafi', 'Erecta', 'Wafi', 'Tadil', 'Herox'],
@@ -594,7 +696,7 @@ const BrandComparisonSection = () => {
     {
       id: 'pe-pills',
       icon: Pill,
-      productImg: <ReusableImage src={imageAssets.pePillProduct} alt="Generic PE Pills" fallbackType="pePill" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
+      productImg: <ProductImageStrip images={productImages.pePills} fallbackType="pill" label="Priligy / Lejam / Endura" />,
       titleAr: 'حبوب تأخير القذف',
       titleEn: 'PE Pills',
       brands: ['Priligy', 'Dapoxetine', 'Lejam', 'Endura'],
@@ -611,7 +713,7 @@ const BrandComparisonSection = () => {
     {
       id: 'delay-sprays',
       icon: Wind,
-      productImg: <ReusableImage src={imageAssets.sprayProduct} alt="Generic Delay Spray" fallbackType="spray" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
+      productImg: <ProductImageStrip images={productImages.sprays} fallbackType="spray" label="Procomil / Dynamo / Stud 100" />,
       titleAr: 'بخاخات التأخير',
       titleEn: 'Delay Sprays',
       brands: ['Procomil', 'Dynamo', 'Stud 100', 'pjur med PROLONG', 'Eros', 'Viga X', 'Xcite'],
@@ -628,7 +730,7 @@ const BrandComparisonSection = () => {
     {
       id: 'gels-creams',
       icon: Droplet,
-      productImg: <ReusableImage src={imageAssets.gelProduct} alt="Generic Gel Cream" fallbackType="gel" containerClass="w-20 h-24 md:w-24 md:h-28 mx-auto" />,
+      productImg: <ProductImageStrip images={productImages.gels} fallbackType="gel" label="Himcolin / Eroxon / Lidocaine" />,
       titleAr: 'الجل والكريمات',
       titleEn: 'Gels & Creams',
       brands: ['Himcolin', 'Eroxon', 'Vittal Gel', 'Lidocaine Cream', 'Lidocaine Ointment', 'Prila 5%', 'EMLA'],
@@ -746,7 +848,7 @@ const BrandComparisonSection = () => {
 
               {/* Product Image */}
               <div className="mt-4 mb-5">
-                <ReusableImage src={imageAssets.ourProductMain} alt="Our Custom Product" fallbackType="product" containerClass="w-24 h-26 md:w-32 md:h-36 mx-auto" />
+                <ProductImageStrip images={productImages.ourProduct} fallbackType="product" label="Personalized Plan" isOurs={true} />
               </div>
 
               {/* Title */}
@@ -945,7 +1047,7 @@ const ComparisonTableSection = () => {
                       <Pill className="w-6 h-6 text-red-500" />
                       <span>حبوب ED/PE</span>
                       <span className="text-[10px] font-normal text-red-400" dir="ltr">Viagra · Priligy · Snafi</span>
-                      <div className="mt-1"><ReusableImage src={imageAssets.pillProduct} alt="ED Pills" fallbackType="pill" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
+                      <div className="mt-2"><ProductImageStrip images={productImages.edPills.slice(0,3)} fallbackType="pill" label="Viagra / Cialis / Snafi" /></div>
                     </div>
                   </th>
                   <th className="bg-orange-50 text-orange-700 py-5 px-3 font-bold text-sm w-[18%] border-b-2 border-orange-200">
@@ -953,7 +1055,7 @@ const ComparisonTableSection = () => {
                       <Wind className="w-6 h-6 text-orange-500" />
                       <span>بخاخ التأخير</span>
                       <span className="text-[10px] font-normal text-orange-400" dir="ltr">Procomil · Dynamo · Stud 100</span>
-                      <div className="mt-1"><ReusableImage src={imageAssets.sprayProduct} alt="Delay Spray" fallbackType="spray" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
+                      <div className="mt-2"><ProductImageStrip images={productImages.sprays.slice(0,3)} fallbackType="spray" label="Procomil / Dynamo / Stud 100" /></div>
                     </div>
                   </th>
                   <th className="bg-orange-50 text-orange-700 py-5 px-3 font-bold text-sm w-[18%] border-b-2 border-orange-200">
@@ -961,7 +1063,7 @@ const ComparisonTableSection = () => {
                       <Droplet className="w-6 h-6 text-orange-500" />
                       <span>جل / كريم</span>
                       <span className="text-[10px] font-normal text-orange-400" dir="ltr">Himcolin · Eroxon · Lidocaine</span>
-                      <div className="mt-1"><ReusableImage src={imageAssets.gelProduct} alt="Gels" fallbackType="gel" containerClass="w-10 h-10 mx-auto rounded-lg" /></div>
+                      <div className="mt-2"><ProductImageStrip images={productImages.gels.slice(0,3)} fallbackType="gel" label="Himcolin / Eroxon / Prila" /></div>
                     </div>
                   </th>
                   <th className="bg-gradient-to-b from-brand-green to-brand-green-dark text-white py-5 px-4 font-bold text-sm w-[28%] relative border-b-4 border-brand-gold">
