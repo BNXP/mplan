@@ -673,89 +673,225 @@ const HeroSection = () => (
 )
 
 // =====================================================================
-// SCREEN 2 — BRAND VISUAL COMPARISON (Core Module)
+// SCREEN 2 — BRAND VISUAL COMPARISON (full-width category blocks)
 // =====================================================================
+const CategoryComparisonSection = ({
+  titleAr, titleEn, tag, theme,
+  productImages: images, fallbackType,
+  productNames,
+  warningSummary,
+  drawbacks,
+  betterPoints,
+}) => {
+  const themes = {
+    red:    { wash: 'bg-red-50',    border: 'border-red-200',    badge: 'bg-red-600',    accent: 'bg-red-100/70',    text: 'text-red-700',    icon: 'text-red-500',    drop: 'bg-red-100/50' },
+    rose:   { wash: 'bg-rose-50',   border: 'border-rose-200',   badge: 'bg-rose-600',   accent: 'bg-rose-100/70',   text: 'text-rose-700',   icon: 'text-rose-500',   drop: 'bg-rose-100/50' },
+    orange: { wash: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-500', accent: 'bg-orange-100/70', text: 'text-orange-700', icon: 'text-orange-500', drop: 'bg-orange-100/50' },
+    amber:  { wash: 'bg-amber-50',  border: 'border-amber-300',  badge: 'bg-amber-600',  accent: 'bg-amber-100/70',  text: 'text-amber-700',  icon: 'text-amber-600',  drop: 'bg-amber-100/50' },
+  };
+  const t = themes[theme] || themes.red;
+
+  return (
+    <article className={`relative ${t.wash} rounded-3xl border-2 ${t.border} overflow-hidden shadow-xl`}>
+      <div className={`absolute top-0 bottom-0 right-0 w-2 ${t.badge}`} aria-hidden />
+
+      <div className={`${t.badge} text-white px-5 md:px-7 py-3 md:py-4 flex items-center justify-between gap-3`}>
+        <span className="flex items-center gap-2 text-xs md:text-sm font-black uppercase tracking-wider">
+          <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />
+          {tag}
+        </span>
+        <span className="text-[10px] md:text-xs font-bold opacity-90" dir="ltr">{titleEn}</span>
+      </div>
+
+      <div className="p-5 md:p-8 grid lg:grid-cols-12 gap-6 md:gap-8">
+        <div className="lg:col-span-7">
+          <h3 className="text-2xl md:text-4xl font-black text-brand-gray leading-tight mb-2">
+            {titleAr}
+          </h3>
+          <div className="text-xs md:text-sm text-gray-500 font-bold mb-5 leading-relaxed" dir="ltr">{productNames}</div>
+
+          <div className="mb-5">
+            <ProductImageStrip images={images} fallbackType={fallbackType} label={productNames} />
+          </div>
+
+          <div className={`relative ${t.accent} border-2 ${t.border} rounded-2xl p-4 md:p-5 mb-5`}>
+            <div className="flex items-start gap-3">
+              <AlertOctagon className={`w-6 h-6 md:w-7 md:h-7 ${t.icon} flex-shrink-0 mt-0.5`} />
+              <div className="flex-1">
+                <div className={`text-[10px] md:text-xs font-bold ${t.text} uppercase tracking-wider mb-1`} dir="ltr">Bottom line</div>
+                <div className={`text-base md:text-xl font-black ${t.text} leading-snug`}>
+                  {warningSummary}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul className="grid sm:grid-cols-2 gap-2.5 md:gap-3">
+            {drawbacks.map((point, i) => (
+              <li key={i} className={`flex items-start gap-2.5 ${t.drop} rounded-xl p-3 md:p-3.5 border ${t.border}`}>
+                <XCircle className={`w-4 h-4 md:w-5 md:h-5 ${t.icon} flex-shrink-0 mt-0.5`} />
+                <span className="text-sm md:text-[15px] text-gray-700 leading-snug">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="lg:col-span-5">
+          <div className="h-full bg-gradient-to-br from-brand-green via-brand-green-dark to-brand-green-dark text-white rounded-2xl p-5 md:p-6 border-2 border-brand-gold shadow-2xl flex flex-col">
+            <div className="flex items-center gap-3 mb-4 pb-4 border-b border-brand-gold/30">
+              <div className="w-10 h-10 md:w-11 md:h-11 bg-brand-gold rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Crown className="w-5 h-5 md:w-6 md:h-6 text-brand-green-dark" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-wider" dir="ltr">
+                  Our Plan vs. {titleEn}
+                </div>
+                <div className="text-lg md:text-xl font-black text-brand-gold-light leading-tight">
+                  لماذا حلنا أفضل
+                </div>
+              </div>
+            </div>
+
+            <ul className="space-y-2.5 md:space-y-3 flex-1">
+              {betterPoints.map((point, i) => (
+                <li key={i} className="flex items-start gap-2.5 bg-white/10 backdrop-blur rounded-xl p-3 border border-brand-gold/30">
+                  <CheckCircle2 className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                  <span className="text-sm md:text-[15px] text-white font-bold leading-snug">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#"
+              className="mt-5 block text-center bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark px-4 py-3 md:py-3.5 rounded-xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
+            >
+              <span className="flex items-center justify-center gap-2">
+                <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
+                ابدأ خطتك المخصصة الآن
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+};
+
 const BrandComparisonSection = () => {
-  const competitorCategories = [
+  const categories = [
     {
       id: 'ed-pills',
-      icon: Pill,
-      productImg: <ProductImageStrip images={productImages.edPills} fallbackType="pill" label="Viagra / Cialis / Snafi / Erecta / Wafi" />,
       titleAr: 'حبوب الانتصاب',
       titleEn: 'ED Pills',
-      brands: ['Viagra', 'Cialis', 'Snafi', 'Erecta', 'Wafi'],
-      badge: 'Temporary · مؤقت',
-      badgeColor: 'bg-red-600',
-      limitation: 'دعم مؤقت للانتصاب — ليس حلاً مخصصاً',
-      warningPoints: [
-        'تأثير مؤقت يزول بعد ساعات',
-        'آثار جانبية: صداع، احمرار، عسر هضم',
-        'تحتاج إثارة جنسية لتعمل',
-        'لا متابعة شخصية',
+      tag: 'Temporary · مؤقت',
+      theme: 'red',
+      productNames: 'Viagra / Cialis / Snafi / Erecta / Wafi',
+      productImages: productImages.edPills,
+      fallbackType: 'pill',
+      warningSummary: 'دعم مؤقت للانتصاب — ليس حلاً مخصصاً',
+      drawbacks: [
+        'تأثير مؤقت يزول بعد ساعات قليلة',
+        'تحتاج إثارة جنسية مسبقة لتعمل (Sildenafil / Tadalafil)',
+        'صداع، احمرار، عسر هضم، انسداد أنفي، دوخة',
+        'خطر هبوط ضغط حاد مع أدوية النترات للقلب',
+        'حذر شديد لأصحاب الضغط والسكري والقلب',
+        'لا تعالج القذف المبكر أو الإحساس أو الثقة',
+      ],
+      betterPoints: [
+        'برنامج 20–30 يوم متكامل — وليس حبة قبل العلاقة',
+        'مكونات نباتية معتمدة بدلاً من Sildenafil / Tadalafil',
+        'متابعة يومية شخصية 3–5 دقائق طوال الخطة',
+        'يعالج الجذر: صلابة + وقت + إحساس + ثقة معاً',
+        'آمن لأصحاب الضغط والسكري والقلب',
       ],
     },
     {
       id: 'pe-pills',
-      icon: Pill,
-      productImg: <ProductImageStrip images={productImages.pePills} fallbackType="pill" label="Priligy / Lejam / Dapoxetine / Endura" />,
       titleAr: 'حبوب تأخير القذف',
       titleEn: 'PE Pills',
-      brands: ['Priligy', 'Lejam', 'Dapoxetine', 'Endura'],
-      badge: 'On-demand · عند الحاجة',
-      badgeColor: 'bg-red-500',
-      limitation: 'دواء عند الحاجة فقط — لا يقدم خطة كاملة',
-      warningPoints: [
-        'يُؤخذ قبل كل علاقة',
-        'لا معالجة للسبب الأساسي',
-        'آثار جانبية محتملة',
-        'لا متابعة أو تخصيص',
+      tag: 'On-demand · عند الحاجة',
+      theme: 'rose',
+      productNames: 'Priligy / Lejam / Dapoxetine / Endura',
+      productImages: productImages.pePills,
+      fallbackType: 'pill',
+      warningSummary: 'دواء عند الحاجة فقط — لا يقدم خطة كاملة',
+      drawbacks: [
+        'تُؤخذ قبل كل علاقة — اعتماد متكرر',
+        'لا تعالج السبب الأساسي للقذف المبكر',
+        'آثار جانبية: غثيان، دوخة، صداع، تعرّق',
+        'لا تحسّن الانتصاب أو الإحساس أو الثقة',
+        'تجربة فردية بدون متابعة أو تخصيص',
+        'قلق الأداء والضغط النفسي قد يستمران',
+      ],
+      betterPoints: [
+        'خطة كاملة بدلاً من حبة قبل كل علاقة',
+        'علاج جذور التأخير الطبيعي — وليس فقط تأخير دوائي',
+        'تحسين الثقة + الانتصاب + الإحساس معاً',
+        'متابعة شخصية يومية وليس تجربة عمياء',
+        'لا اعتماد دوائي قبل كل علاقة',
       ],
     },
     {
       id: 'delay-sprays',
-      icon: Wind,
-      productImg: <ProductImageStrip images={productImages.sprays} fallbackType="spray" label="Procomil / Dynamo / Stud 100 / pjur PROLONG / Eros Delay Spray" />,
       titleAr: 'بخاخات التأخير',
       titleEn: 'Delay Sprays',
-      brands: ['Procomil', 'Dynamo', 'Stud 100', 'pjur PROLONG', 'Eros Delay Spray'],
-      badge: 'Numbing · تخدير',
-      badgeColor: 'bg-orange-500',
-      limitation: 'تأخير عن طريق تقليل الإحساس — قد يسبب خَدَراً',
-      warningPoints: [
-        'تقلل متعتك أنت أيضاً',
-        'قد تؤثر على الشريكة',
-        'إحراج: رش + انتظار + تنظيف',
-        'تأثير مؤقت جداً',
+      tag: 'Numbing · تخدير',
+      theme: 'orange',
+      productNames: 'Procomil / Dynamo / Stud 100 / pjur PROLONG / Eros Delay Spray',
+      productImages: productImages.sprays,
+      fallbackType: 'spray',
+      warningSummary: 'تأخير عن طريق تقليل الإحساس — قد يسبب خَدَراً',
+      drawbacks: [
+        'تُخدّر الإحساس — لا تحسّن الأداء فعلياً',
+        'تقلل من متعتك أنت أيضاً',
+        'قد تنتقل وتؤثر على إحساس الشريكة',
+        'تحتاج رشّ + انتظار 10–15 دقيقة + تنظيف',
+        'رائحة كيميائية أو بقايا قد تكسر الأجواء',
+        'تأثير مؤقت جداً ولا يُحسّن وضعك مستقبلاً',
+      ],
+      betterPoints: [
+        'تحسين الإحساس الحقيقي بدلاً من تخديره',
+        'لا حاجة لرشّ أو انتظار أو تنظيف قبل العلاقة',
+        'لا تأثير سلبي على إحساس الشريكة',
+        'نتائج مستدامة لا تختفي عند توقف الاستخدام',
+        'متعة كاملة لكلا الطرفين',
       ],
     },
     {
       id: 'gels-creams',
-      icon: Droplet,
-      productImg: <ProductImageStrip images={productImages.gels} fallbackType="gel" label="Himcolin Gel / Eroxon Gel / Prila 5% / EMLA / Lidocaine Cream" />,
       titleAr: 'الكريمات والجل',
       titleEn: 'Gels & Creams',
-      brands: ['Himcolin Gel', 'Eroxon Gel', 'Prila 5%', 'EMLA', 'Lidocaine Cream'],
-      badge: 'Surface · سطحي',
-      badgeColor: 'bg-orange-500',
-      limitation: 'تأثير موضعي على السطح — ليس خطة مخصصة',
-      warningPoints: [
-        'لزج وقد يترك بقايا',
-        'يحتاج وقتاً للامتصاص',
-        'تأثير محصور بموضع الدهن',
-        'لا يكفي للمشكلات المركبة',
+      tag: 'Surface · سطحي',
+      theme: 'amber',
+      productNames: 'Himcolin Gel / Eroxon Gel / Prila 5% / EMLA / Lidocaine Cream',
+      productImages: productImages.gels,
+      fallbackType: 'gel',
+      warningSummary: 'تأثير موضعي على السطح — ليس خطة مخصصة',
+      drawbacks: [
+        'تأثير محصور بموضع الدهن فقط',
+        'قد تكون لزجة وتترك بقايا أو بقع',
+        'تحتاج وقتاً للامتصاص قبل الاستخدام',
+        'كريمات مخدرة قد تقلل الإحساس مثل البخاخات',
+        'نفس الكريم للجميع — ليست مخصصة',
+        'لا تكفي لمشكلات مركّبة: صلابة + وقت + ثقة',
+      ],
+      betterPoints: [
+        'تأثير من الداخل وليس على السطح فقط',
+        'مكونات نباتية بدون لزوجة أو رائحة',
+        'خطة شاملة: صلابة + وقت + إحساس + ثقة',
+        'مخصصة لحالتك وليس كريم عام للجميع',
+        'لا حاجة لتطبيق موضعي قبل العلاقة',
       ],
     },
-  ]
+  ];
 
   return (
-    <section id="brand-comparison" className="py-14 md:py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="brand-comparison" className="py-14 md:py-24 bg-brand-cream relative overflow-hidden">
       <div className="absolute top-0 left-0 w-72 h-72 bg-red-50/50 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-orange-50/30 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-16">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-10 md:mb-14">
           <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-4">
             <AlertTriangle className="w-4 h-4" />
             <span>المنتجات التي تعرفها — وحدودها</span>
@@ -770,167 +906,13 @@ const BrandComparisonSection = () => {
           </p>
         </div>
 
-        {/* Main comparison layout */}
-        <div className="grid lg:grid-cols-12 gap-5 md:gap-6 items-stretch">
-
-          {/* LEFT: Competitor categories (8 cols on desktop) */}
-          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4 md:gap-5">
-            {competitorCategories.map((cat, idx) => {
-              const Icon = cat.icon
-              return (
-                <div
-                  key={idx}
-                  className="relative bg-gradient-to-b from-gray-50 to-white border-2 border-gray-200 rounded-3xl p-5 md:p-6 hover:border-red-300 transition-all overflow-hidden group"
-                >
-                  {/* Warning badge */}
-                  <div className="absolute -top-0 left-0 right-0">
-                    <div className={`${cat.badgeColor} text-white px-4 py-1.5 rounded-b-xl text-[10px] md:text-xs font-black uppercase tracking-wide shadow-md mx-auto w-fit`}>
-                      <span className="flex items-center gap-1.5">
-                        <AlertTriangle className="w-3 h-3" />
-                        {cat.badge}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Product Image */}
-                  <div className="mt-5 mb-3">
-                    {cat.productImg}
-                  </div>
-
-                  {/* Category Title */}
-                  <div className="text-center mb-3">
-                    <h3 className="text-base md:text-lg font-black text-brand-gray leading-snug">
-                      {cat.titleAr}
-                    </h3>
-                    <div className="text-xs text-gray-400 font-bold tracking-wide" dir="ltr">{cat.titleEn}</div>
-                  </div>
-
-                  {/* Brand names grid */}
-                  <div className="flex flex-wrap gap-1.5 justify-center mb-4">
-                    {cat.brands.map((brand, bi) => (
-                      <span
-                        key={bi}
-                        className="bg-white border border-gray-200 text-gray-600 px-2.5 py-1 rounded-lg text-[11px] md:text-xs font-bold"
-                        dir="ltr"
-                      >
-                        {brand}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Limitation bar */}
-                  <div className="bg-red-50 border border-red-100 rounded-xl p-2.5 mb-3 flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
-                    <span className="text-xs md:text-sm text-red-700 font-bold leading-snug">{cat.limitation}</span>
-                  </div>
-
-                  {/* Warning points */}
-                  <ul className="space-y-1.5">
-                    {cat.warningPoints.map((point, pi) => (
-                      <li key={pi} className="flex items-start gap-2 text-xs md:text-[13px] text-gray-600 leading-snug">
-                        <XCircle className="w-3.5 h-3.5 text-red-400 flex-shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* RIGHT: Our Product (4 cols on desktop) - Most Prominent */}
-          <div className="lg:col-span-4">
-            <div className="relative h-full bg-gradient-to-b from-brand-green via-brand-green-dark to-brand-green-dark text-white rounded-3xl p-6 md:p-8 border-4 border-brand-gold shadow-2xl glow-green flex flex-col">
-              {/* Best choice badge */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-green-dark px-5 py-2 rounded-full text-sm font-black shadow-lg whitespace-nowrap flex items-center gap-1.5">
-                <Crown className="w-4 h-4" />
-                الخيار الأفضل
-              </div>
-
-              {/* Product Image */}
-              <div className="mt-4 mb-5">
-                <ProductImageStrip images={productImages.ourProduct} fallbackType="product" label="Personalized Plan" isOurs={true} />
-              </div>
-
-              {/* Title */}
-              <div className="text-center mb-5">
-                <h3 className="text-xl md:text-2xl font-black text-brand-gold-light leading-snug mb-1">
-                  خطتنا المخصصة
-                </h3>
-                <div className="text-sm text-white/70 font-bold" dir="ltr">Personalized Full-Cycle Plan</div>
-                <div className="mt-3 inline-block bg-brand-gold/15 border border-brand-gold/40 text-brand-gold-light px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold leading-snug">
-                  منتج مخصص حسب حالتك + متابعة خاصة + برنامج 20–30 يوم
-                </div>
-              </div>
-
-              {/* Value propositions */}
-              <div className="space-y-3 flex-1">
-                {[
-                  { icon: ClipboardCheck, text: 'تقييم خاص قبل التوصية' },
-                  { icon: Crown, text: 'منتج مخصص حسب وضعك' },
-                  { icon: MessageCircle, text: 'متابعة يومية شخصية' },
-                  { icon: CalendarCheck, text: 'برنامج 20–30 يوم' },
-                  { icon: Lock, text: 'خصوصية تامة + شحن سري' },
-                  { icon: ShieldCheck, text: 'ضمان 90 يوم كامل' },
-                  { icon: Leaf, text: 'مكونات نباتية + اعتمادات' },
-                ].map((item, i) => {
-                  const ItemIcon = item.icon
-                  return (
-                    <div key={i} className="flex items-center gap-3 p-2.5 bg-white/10 backdrop-blur rounded-xl border border-brand-gold/20">
-                      <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center flex-shrink-0">
-                        <ItemIcon className="w-4 h-4 text-brand-green-dark" />
-                      </div>
-                      <span className="text-sm md:text-[15px] font-bold text-white">{item.text}</span>
-                      <CheckCircle2 className="w-5 h-5 text-brand-gold flex-shrink-0 mr-auto" />
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Comparison summary */}
-              <div className="mt-5 pt-4 border-t border-brand-gold/30">
-                <div className="text-center text-brand-gold text-xs md:text-sm font-bold mb-3">
-                  بينما المنتجات الأخرى...
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { label: 'مؤقتة', icon: XCircle },
-                    { label: 'عامة', icon: XCircle },
-                    { label: 'بدون متابعة', icon: XCircle },
-                    { label: 'بدون ضمان', icon: XCircle },
-                  ].map((item, i) => {
-                    const ItemIcon = item.icon
-                    return (
-                      <div key={i} className="flex items-center gap-1.5 bg-red-500/20 border border-red-400/30 rounded-lg px-2.5 py-1.5">
-                        <ItemIcon className="w-3.5 h-3.5 text-red-300 flex-shrink-0" />
-                        <span className="text-xs text-red-200 font-bold">{item.label}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-5">
-                <a
-                  href="#"
-                                    className="block w-full bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark text-center px-5 py-4 rounded-2xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <MessageCircle className="w-5 h-5" />
-                    ابدأ تقييمك الخاص الآن
-                  </span>
-                </a>
-                <p className="text-center text-white/50 text-xs mt-2">
-                  سرية تامة · دفع عند الاستلام
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="space-y-8 md:space-y-10">
+          {categories.map((cat) => (
+            <CategoryComparisonSection key={cat.id} {...cat} />
+          ))}
         </div>
 
-        {/* Bottom trust message */}
-        <div className="mt-8 md:mt-12 text-center">
+        <div className="mt-10 md:mt-14 text-center">
           <div className="inline-flex items-center gap-3 bg-brand-green/5 border-2 border-brand-green/20 rounded-2xl px-6 py-4">
             <div className="w-10 h-10 bg-brand-green rounded-xl flex items-center justify-center flex-shrink-0">
               <CheckCircle2 className="w-5 h-5 text-brand-gold" />
@@ -944,8 +926,8 @@ const BrandComparisonSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // =====================================================================
 // SCREEN 3 — Core comparison table with brand names
