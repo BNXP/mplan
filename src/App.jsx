@@ -276,8 +276,8 @@ const productImages = {
 // ProductImageStrip - Overlapping product image wall
 // =====================================================================
 const ProductImageStrip = ({ images, fallbackType = 'product', label = '', isOurs = false }) => {
-  const [loaded, setLoaded] = React.useState({});
-  const [allFailed, setAllFailed] = React.useState(false);
+  const [loaded, setLoaded] = useState({});
+  const [allFailed, setAllFailed] = useState(false);
   const Fallback = fallbackMap[fallbackType] || ProductFallback;
 
   const visibleCount = Object.values(loaded).filter(v => v).length;
@@ -352,7 +352,7 @@ const fallbackMap = {
 };
 
 const ReusableImage = ({ src, alt, className = '', fallbackType = 'product', containerClass = '' }) => {
-  const [error, setError] = React.useState(false);
+  const [error, setError] = useState(false);
   const Fallback = fallbackMap[fallbackType] || ProductFallback;
 
   if (error || !src) {
