@@ -299,12 +299,12 @@ const ProductImageStrip = ({ images, fallbackType = 'product', label = '', isOur
   }
 
   return (
-    <div className={`relative rounded-3xl overflow-hidden p-3 md:p-4 ${
-      isOurs 
-        ? 'bg-gradient-to-b from-brand-green/10 to-brand-green-dark/10 border-2 border-brand-gold/40' 
+    <div className={`relative rounded-3xl p-3 md:p-4 ${
+      isOurs
+        ? 'bg-gradient-to-b from-brand-green/10 to-brand-green-dark/10 border-2 border-brand-gold/40'
         : 'bg-white border-2 border-red-100'
     }`}>
-      <div className="flex items-center justify-center -space-x-4 md:-space-x-6">
+      <div className="flex items-center justify-center -space-x-3 md:-space-x-4 overflow-hidden">
         {images.map((src, i) => (
           <div
             key={i}
@@ -316,7 +316,7 @@ const ProductImageStrip = ({ images, fallbackType = 'product', label = '', isOur
             <img
               src={src}
               alt={`${label} ${i + 1}`}
-              className={`object-contain ${isOurs ? 'h-28 md:h-44 w-20 md:w-28' : 'h-20 md:h-32 w-14 md:w-20'}`}
+              className={`object-contain ${isOurs ? 'h-24 md:h-36 w-16 md:w-20' : 'h-16 md:h-24 w-11 md:w-14'}`}
               onLoad={() => setLoaded(prev => ({ ...prev, [i]: true }))}
               onError={() => setLoaded(prev => ({ ...prev, [i]: false }))}
               loading="lazy"
