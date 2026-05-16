@@ -514,163 +514,176 @@ const TopBar = () => (
 // =====================================================================
 // SCREEN 1 — HERO with specific product names
 // =====================================================================
-const HeroSection = () => (
-  <section className="relative bg-gradient-to-bl from-brand-green-dark via-brand-green to-brand-green-dark text-white overflow-hidden">
-    <div className="absolute inset-0 bg-pattern opacity-40" />
-    <div className="absolute top-0 left-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2" />
-    <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl translate-y-1/2" />
+const HeroMarketComparison = () => {
+  const competitors = [
+    {
+      id: 'ed',
+      titleAr: 'حبوب الانتصاب',
+      titleEn: 'ED Pills',
+      tag: 'TEMPORARY',
+      tagBg: 'bg-red-600',
+      borderColor: 'border-red-200',
+      bg: 'bg-red-50/60',
+      images: productImages.edPills,
+      fallbackType: 'pill',
+      brandNames: 'Viagra / Cialis / Snafi / Erecta / Wafi',
+      drawback: 'دعم مؤقت للانتصاب — ليس حلاً مخصصاً',
+    },
+    {
+      id: 'pe',
+      titleAr: 'حبوب تأخير القذف',
+      titleEn: 'PE Pills',
+      tag: 'ON-DEMAND',
+      tagBg: 'bg-rose-600',
+      borderColor: 'border-rose-200',
+      bg: 'bg-rose-50/60',
+      images: productImages.pePills,
+      fallbackType: 'pill',
+      brandNames: 'Priligy / Lejam / Dapoxetine / Endura',
+      drawback: 'دواء عند الحاجة فقط — لا يقدم خطة كاملة',
+    },
+    {
+      id: 'sprays',
+      titleAr: 'بخاخات التأخير',
+      titleEn: 'Delay Sprays',
+      tag: 'NUMBING',
+      tagBg: 'bg-orange-500',
+      borderColor: 'border-orange-200',
+      bg: 'bg-orange-50/60',
+      images: productImages.sprays,
+      fallbackType: 'spray',
+      brandNames: 'Procomil / Dynamo / Stud 100 / pjur PROLONG / Eros',
+      drawback: 'تأخير عن طريق التخدير — قد يقلل الإحساس والمتعة',
+    },
+    {
+      id: 'gels',
+      titleAr: 'الكريمات والجل',
+      titleEn: 'Gels & Creams',
+      tag: 'SURFACE-LEVEL',
+      tagBg: 'bg-amber-600',
+      borderColor: 'border-amber-300',
+      bg: 'bg-amber-50/60',
+      images: productImages.gels,
+      fallbackType: 'gel',
+      brandNames: 'Himcolin / Eroxon / Prila / EMLA / Lidocaine',
+      drawback: 'تأثير موضعي على السطح — ليس خطة مخصصة',
+    },
+  ];
 
-    <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-20">
-      <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+  const ourBenefits = [
+    'تقييم خاص قبل التوصية',
+    'منتج مخصص حسب وضعك',
+    'متابعة شخصية',
+    'برنامج 20–30 يوم',
+    'خصوصية كاملة',
+    'ضمان 90 يوم',
+  ];
 
-        {/* Title + CTA */}
-        <div className="fade-in">
-          <div className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/40 text-brand-gold-light px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-5">
-            <Crown className="w-4 h-4" />
-            <span>خطة مخصصة — ليست منتجاً عاماً</span>
+  return (
+    <section id="hero-comparison" className="relative bg-gradient-to-b from-brand-cream via-white to-brand-cream overflow-hidden py-10 md:py-20">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl" aria-hidden />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl" aria-hidden />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-10 md:mb-14">
+          <div className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/40 text-brand-green px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-5" dir="ltr">
+            <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+            Common Products vs Personalized Plan
           </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.2] mb-5">
-            هل جرّبت
-            <span className="text-gradient-gold mx-2">Viagra أو Procomil</span>
-            من قبل؟
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.2] text-brand-green mb-5">
+            المنتجات الشائعة في السوق
+            <span className="block text-brand-gold mt-2">ليست مثل خطتنا المخصصة</span>
           </h1>
-
-          <p className="text-base md:text-xl text-white/85 leading-relaxed mb-7">
-            معظم الرجال في المنطقة جرّبوا <strong className="text-brand-gold-light">Viagra</strong>،
-            <strong className="text-brand-gold-light"> Snafi</strong>،
-            <strong className="text-brand-gold-light"> Priligy</strong>،
-            <strong className="text-brand-gold-light"> Procomil</strong>، أو
-            <strong className="text-brand-gold-light"> Himcolin</strong> —
-            ومع ذلك تتكرر المشكلة.
-            لأن هذه الحلول في الغالب <strong className="text-brand-gold-light">مؤقتة</strong> أو
-            <strong className="text-brand-gold-light"> تخدير موضعي</strong>،
-            وليست خطة مخصصة لحالتك أنت.
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            معظم المنتجات المعروفة مثل <strong className="text-red-600">Viagra</strong> و
+            <strong className="text-orange-600"> Procomil</strong> و
+            <strong className="text-amber-600">Himcolin</strong> تعمل بشكل مؤقت أو موضعي،
+            بينما <strong className="text-brand-green">خطتنا</strong> تعتمد على
+            <strong className="text-brand-green"> التخصيص والمتابعة والبرنامج الكامل</strong>.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 mb-7">
-            <a
-              href="#"
-                            className="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-6 py-4 rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-[#25D366]/30 transition-all hover:scale-[1.02]"
-            >
-              <MessageCircle className="w-5 h-5" />
-              <span>ابدأ تقييمك الخاص الآن</span>
-            </a>
-            <a
-              href="#brand-comparison"
-              className="bg-white/10 backdrop-blur border-2 border-brand-gold/60 hover:bg-brand-gold/10 text-white px-6 py-4 rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-2 transition-all"
-            >
-              <span>قارن المنتجات التي تعرفها</span>
-              <ArrowDownCircle className="w-5 h-5 text-brand-gold-light" />
-            </a>
-          </div>
-
-          <div className="flex items-center gap-4 flex-wrap text-xs md:text-sm text-white/70">
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-gold-light" /> تقييم خاص</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-gold-light" /> منتج مخصص</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-gold-light" /> متابعة يومية</span>
-          </div>
         </div>
 
-        {/* Comparison Card with specific brands */}
-        <div>
-          <div className="relative">
-            <div className="absolute -top-3 -right-3 bg-brand-gold text-brand-green-dark px-4 py-1.5 rounded-full text-xs font-black z-10 shadow-lg">
-              مقارنة سريعة
-            </div>
-            <div className="bg-white/95 backdrop-blur rounded-3xl p-5 md:p-7 shadow-2xl text-brand-gray">
-              <div className="mb-4"><ProductImageStrip images={productImages.ourProduct} fallbackType="product" label="Our Product" isOurs={true} /></div>
+        <div className="grid lg:grid-cols-10 gap-5 md:gap-7 items-stretch">
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 md:gap-5">
+            {competitors.map((c) => (
+              <article
+                key={c.id}
+                className={`relative ${c.bg} border-2 ${c.borderColor} rounded-3xl overflow-hidden shadow-md flex flex-col`}
+              >
+                <div className={`${c.tagBg} text-white px-4 py-2 flex items-center justify-between text-xs md:text-sm font-black uppercase tracking-wider`}>
+                  <span className="flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />
+                    {c.tag}
+                  </span>
+                  <span className="opacity-90" dir="ltr">{c.titleEn}</span>
+                </div>
 
-              {[
-                {
-                  category: 'ED Pills',
-                  brands: 'Viagra · Cialis · Snafi · Erecta · Wafi',
-                  arLabel: 'حبوب — دعم مؤقت',
-                  icon: Pill,
-                  color: 'red',
-                  isOurs: false,
-                },
-                {
-                  category: 'PE Pills',
-                  brands: 'Priligy · Dapoxetine · Lejam · Endura',
-                  arLabel: 'حبوب — عند الحاجة فقط',
-                  icon: Pill,
-                  color: 'red',
-                  isOurs: false,
-                },
-                {
-                  category: 'Delay Sprays',
-                  brands: 'Procomil · Dynamo · Stud 100 · Viga X · Xcite',
-                  arLabel: 'بخاخ — تخدير موضعي',
-                  icon: Wind,
-                  color: 'orange',
-                  isOurs: false,
-                },
-                {
-                  category: 'Gels / Creams',
-                  brands: 'Himcolin · Eroxon · Lidocaine · Prila · EMLA',
-                  arLabel: 'جل/كريم — تأثير سطحي',
-                  icon: Droplet,
-                  color: 'orange',
-                  isOurs: false,
-                },
-                {
-                  category: 'Our Plan',
-                  brands: 'تقييم خاص + خطة مخصصة + متابعة + ضمان 90 يوم',
-                  arLabel: 'منتجنا — خطة كاملة مخصصة',
-                  icon: Crown,
-                  color: 'green',
-                  isOurs: true,
-                },
-              ].map((item, idx) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={idx}
-                    className={`flex items-center gap-3 p-3 md:p-4 rounded-2xl mb-2.5 last:mb-0 transition-all ${
-                      item.isOurs
-                        ? 'bg-gradient-to-l from-brand-green to-brand-green-light text-white border-2 border-brand-gold shadow-lg shadow-brand-green/30 scale-[1.02]'
-                        : 'bg-gray-50 border border-gray-200'
-                    }`}
-                  >
-                    <div className={`flex-shrink-0 w-11 h-11 md:w-12 md:h-12 rounded-xl flex items-center justify-center ${
-                      item.isOurs ? 'bg-brand-gold text-brand-green-dark' :
-                      item.color === 'red' ? 'bg-red-100 text-red-600' :
-                      'bg-orange-100 text-orange-600'
-                    }`}>
-                      <Icon className="w-5 h-5 md:w-6 md:h-6" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className={`font-bold text-sm md:text-base mb-0.5 ${item.isOurs ? 'text-white' : 'text-brand-gray'}`}>
-                        {item.category}
-                        {item.isOurs && <Sparkles className="inline w-4 h-4 text-brand-gold mr-1" />}
-                      </div>
-                      <div className={`text-xs md:text-sm ${item.isOurs ? 'text-brand-gold-light' : 'text-gray-500'}`} dir="ltr">
-                        {item.brands}
-                      </div>
-                      <div className={`text-[11px] md:text-xs mt-0.5 ${item.isOurs ? 'text-white/70' : 'text-gray-400'}`}>
-                        {item.arLabel}
-                      </div>
-                    </div>
-                    {item.isOurs ? (
-                      <CheckCircle2 className="w-6 h-6 text-brand-gold flex-shrink-0" />
-                    ) : (
-                      <AlertTriangle className={`w-5 h-5 flex-shrink-0 ${item.color === 'red' ? 'text-red-500' : 'text-orange-500'}`} />
-                    )}
+                <div className="p-4 md:p-5 flex-1 flex flex-col">
+                  <h2 className="text-lg md:text-2xl font-black text-brand-gray leading-tight mb-1">
+                    {c.titleAr}
+                  </h2>
+                  <div className="text-[11px] md:text-xs text-gray-500 font-bold mb-3 leading-snug" dir="ltr">{c.brandNames}</div>
+
+                  <div className="my-2 md:my-3 flex-1">
+                    <ProductImageStrip images={c.images} fallbackType={c.fallbackType} label={c.brandNames} />
                   </div>
-                )
-              })}
-            </div>
+
+                  <div className={`mt-3 bg-white border ${c.borderColor} rounded-xl px-3 py-2.5 flex items-start gap-2`}>
+                    <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-xs md:text-sm text-gray-700 font-bold leading-snug">{c.drawback}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="lg:col-span-3">
+            <article className="h-full bg-gradient-to-br from-brand-green via-brand-green-dark to-brand-green-dark text-white rounded-3xl border-4 border-brand-gold shadow-2xl overflow-hidden flex flex-col">
+              <div className="bg-brand-gold text-brand-green-dark px-4 py-2.5 flex items-center justify-between text-xs md:text-sm font-black uppercase tracking-wider">
+                <span className="flex items-center gap-2">
+                  <Crown className="w-4 h-4 md:w-5 md:h-5" />
+                  Personalized Plan
+                </span>
+                <span className="opacity-90 text-[10px] md:text-xs" dir="ltr">Our Solution</span>
+              </div>
+
+              <div className="p-5 md:p-6 flex-1 flex flex-col">
+                <h2 className="text-2xl md:text-3xl font-black text-brand-gold-light leading-tight mb-1 text-center">
+                  خطتنا المخصصة
+                </h2>
+                <div className="text-xs md:text-sm text-white/70 font-bold mb-4 text-center" dir="ltr">Personalized Full-Cycle Plan</div>
+
+                <div className="my-2 md:my-3">
+                  <ProductImageStrip images={productImages.ourProduct} fallbackType="product" label="Personalized Plan" isOurs={true} />
+                </div>
+
+                <ul className="mt-4 space-y-2 flex-1">
+                  {ourBenefits.map((b, i) => (
+                    <li key={i} className="flex items-start gap-2.5 bg-white/10 backdrop-blur rounded-xl px-3 py-2.5 border border-brand-gold/30">
+                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                      <span className="text-sm md:text-[15px] font-bold text-white leading-snug">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 pt-4 border-t border-brand-gold/30 text-center">
+                  <div className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/40 text-brand-gold-light px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-black uppercase tracking-wider" dir="ltr">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Not a common product
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
-    </div>
 
-    <div className="relative pb-6 flex justify-center">
-      <ChevronDown className="w-6 h-6 text-brand-gold animate-bounce" />
-    </div>
-  </section>
-)
+      <div className="relative pb-2 md:pb-4 pt-8 flex justify-center">
+        <ChevronDown className="w-6 h-6 text-brand-gold animate-bounce" />
+      </div>
+    </section>
+  );
+};
 
 // =====================================================================
 // SCREEN 2 — BRAND VISUAL COMPARISON (full-width category blocks)
@@ -761,15 +774,12 @@ const CategoryComparisonSection = ({
               ))}
             </ul>
 
-            <a
-              href="#"
-              className="mt-5 block text-center bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark px-4 py-3 md:py-3.5 rounded-xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
-            >
-              <span className="flex items-center justify-center gap-2">
-                <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
-                ابدأ خطتك المخصصة الآن
-              </span>
-            </a>
+            <div className="mt-5 flex justify-center">
+              <div className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/40 text-brand-gold-light px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-black uppercase tracking-wider" dir="ltr">
+                <Sparkles className="w-3.5 h-3.5" />
+                Personalized Plan
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1172,15 +1182,12 @@ const ComparisonTableSection = () => {
           })}
         </div>
 
-        {/* CTA after table */}
+        {/* Static informational tag (was a CTA) */}
         <div className="mt-10 md:mt-12 text-center">
-          <a
-            href="#"
-                        className="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-green-dark text-white px-7 py-4 rounded-2xl font-bold text-base md:text-lg shadow-xl shadow-brand-green/30 transition-all hover:scale-[1.02] border-2 border-brand-gold"
-          >
-            <MessageCircle className="w-5 h-5 text-brand-gold" />
-            <span>اطلب تقييمك الخاص الآن</span>
-          </a>
+          <div className="inline-flex items-center justify-center gap-2 bg-brand-green/5 border-2 border-brand-green/20 text-brand-green px-5 py-3 rounded-2xl text-xs md:text-sm font-black uppercase tracking-wider" dir="ltr">
+            <Sparkles className="w-4 h-4 text-brand-gold" />
+            للمقارنة فقط — Personalized Plan
+          </div>
         </div>
       </div>
     </section>
@@ -1581,105 +1588,6 @@ const OurValueSection = () => (
 // =====================================================================
 // SCREEN 7 — Before/After Choice visual comparison
 // =====================================================================
-const BeforeAfterSection = () => (
-  <section className="py-14 md:py-24 bg-white relative overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 md:px-8">
-      <div className="text-center mb-10 md:mb-14">
-        <div className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/40 text-brand-green px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-4">
-          <Repeat className="w-4 h-4 text-brand-gold" />
-          <span>الخيار أمامك</span>
-        </div>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-brand-green mb-3">
-          الخيارات الشائعة <span className="text-gray-400">vs</span> خطتنا المخصصة
-        </h2>
-        <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto">
-          مقارنة بصرية بين ما يفعله معظم الرجال وبين الطريقة المخصصة.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-5 md:gap-8 items-stretch">
-        {/* Common options with brand names */}
-        <div className="relative bg-gradient-to-b from-gray-50 to-white rounded-3xl p-6 md:p-8 border-2 border-gray-200">
-          <div className="absolute -top-3 right-6 bg-gray-400 text-white px-4 py-1.5 rounded-full text-xs font-black shadow-md">
-            الخيارات الشائعة
-          </div>
-          <div className="flex items-center gap-3 mb-6 pb-5 border-b border-gray-200">
-            <div className="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-500">
-              <Frown className="w-7 h-7" strokeWidth={1.5} />
-            </div>
-            <div>
-              <div className="text-base md:text-lg font-bold text-gray-500" dir="ltr">Common Options</div>
-              <div className="text-xs text-gray-400">حلول عامة غير مخصصة</div>
-            </div>
-          </div>
-          <ul className="space-y-3">
-            {[
-              'Viagra / Cialis / Snafi — حبوب مؤقتة',
-              'Priligy / Lejam — حبوب عند الحاجة فقط',
-              'Procomil / Dynamo / Stud 100 — بخاخ تخدير',
-              'Himcolin / Eroxon / Lidocaine — جل سطحي',
-              'بدون متابعة شخصية',
-              'بدون تخصيص لحالتك',
-              'تجربة محرجة أحياناً',
-            ].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 p-3.5 bg-white border border-gray-200 rounded-xl">
-                <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                <span className="text-sm md:text-base text-gray-700 font-medium">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Our plan */}
-        <div className="relative bg-gradient-to-b from-brand-green to-brand-green-dark text-white rounded-3xl p-6 md:p-8 border-2 border-brand-gold shadow-2xl glow-green">
-          <div className="absolute -top-3 right-6 bg-brand-gold text-brand-green-dark px-4 py-1.5 rounded-full text-xs font-black shadow-lg">
-            <span className="flex items-center gap-1.5"><Crown className="w-3.5 h-3.5" /> خطتنا المخصصة</span>
-          </div>
-          <div className="flex items-center gap-3 mb-6 pb-5 border-b border-brand-gold/30">
-            <div className="w-14 h-14 bg-brand-gold rounded-2xl flex items-center justify-center text-brand-green-dark">
-              <Crown className="w-7 h-7" strokeWidth={2} />
-            </div>
-            <div>
-              <div className="text-base md:text-lg font-bold text-brand-gold-light" dir="ltr">Our Personalized Plan</div>
-              <div className="text-xs text-white/70">حل مخصص لحالتك أنت</div>
-            </div>
-          </div>
-          <ul className="space-y-3">
-            {[
-              { text: 'تقييم خاص قبل التوصية', icon: ClipboardCheck },
-              { text: 'منتج مخصص حسب وضعك', icon: Crown },
-              { text: 'متابعة يومية شخصية', icon: MessageCircle },
-              { text: 'خطة 20–30 يوم', icon: CalendarCheck },
-              { text: 'خصوصية كاملة', icon: Lock },
-              { text: 'ضمان 90 يوم', icon: ShieldCheck },
-            ].map((item, i) => {
-              const ItemIcon = item.icon
-              return (
-                <li key={i} className="flex items-center gap-3 p-3.5 bg-white/10 backdrop-blur border border-brand-gold/30 rounded-xl">
-                  <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center flex-shrink-0">
-                    <ItemIcon className="w-4 h-4 text-brand-green-dark" />
-                  </div>
-                  <span className="text-sm md:text-base text-white font-bold flex-1">{item.text}</span>
-                  <CheckCircle2 className="w-5 h-5 text-brand-gold flex-shrink-0" />
-                </li>
-              )
-            })}
-          </ul>
-
-          <div className="mt-6 pt-5 border-t border-brand-gold/30">
-            <a
-              href="#"
-                            className="block w-full bg-brand-gold hover:bg-brand-gold-light text-brand-green-dark text-center px-5 py-3.5 rounded-2xl font-black text-sm md:text-base shadow-lg transition-all hover:scale-[1.02]"
-            >
-              ابدأ تقييمك الخاص الآن
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-)
-
 // =====================================================================
 // SCREEN 8 — FAQ / Objection handling
 // =====================================================================
@@ -1864,13 +1772,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-brand-cream overflow-x-hidden" dir="rtl">
       <TopBar />
-      <HeroSection />
+      <HeroMarketComparison />
       <BrandComparisonSection />
       <ComparisonTableSection />
       <SideEffectsSection />
       <CommonProductsSection />
       <OurValueSection />
-      <BeforeAfterSection />
       <FAQSection />
       <Footer />
     </div>
