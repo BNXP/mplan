@@ -1779,7 +1779,6 @@ export default function App() {
       <BeforeAfterSection />
       <FAQSection />
       <Footer />
-      <StickyBottomCTA />
     </div>
   )
 }
